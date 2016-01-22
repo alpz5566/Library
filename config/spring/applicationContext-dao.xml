@@ -49,7 +49,7 @@
 		<property name="basePackage" value="com.book.library.mapper"></property>
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>
-	<bean id="MybatisMapperDynamicLoader" class="com.book.library.utils.MybatisMapperDynamicLoader" />
+	<bean id="MybatisMapperDynamicLoader" class="com.book.library.utill.MybatisMapperDynamicLoader" />
 	<!-- 配置jdbctemplate -->
 	<bean id="dataSourceProxy" class="org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy">
         <property name="targetDataSource" ref="dataSource"/>
