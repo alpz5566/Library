@@ -12,19 +12,19 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>图书管理系统</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="${ctx}/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${ctx}/sbadmin/sb-admin/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href="${ctx}/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+    <link href="${ctx}/sbadmin/sb-admin/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="${ctx}/dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="${ctx}/sbadmin/sb-admin/dist/css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="${ctx}/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="${ctx}/sbadmin/sb-admin/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -51,9 +51,9 @@
                                 <div class="form-group">
                                     <input class="form-control" placeholder="密码" name="password" type="password" value="">
                                 </div>
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <input class="form-control" placeholder="验证码" name="randcode" type="" value="">
-                                </div>
+                                </div> -->
                                 <div class="checkbox">
                                     <label>
                                         <input name="remember" type="checkbox" value="Remember Me">记住我
@@ -70,16 +70,16 @@
     </div>
 
     <!-- jQuery -->
-    <script src="${ctx}/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="${ctx}/sbadmin/sb-admin/bower_components/jquery/dist/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="${ctx}/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="${ctx}/sbadmin/sb-admin/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="${ctx}/bower_components/metisMenu/dist/metisMenu.min.js"></script>
+    <script src="${ctx}/sbadmin/sb-admin/bower_components/metisMenu/dist/metisMenu.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="${ctx}/dist/js/sb-admin-2.js"></script>
+    <script src="${ctx}/sbadmin/sb-admin/dist/js/sb-admin-2.js"></script>
 
 </body>
 </html>
