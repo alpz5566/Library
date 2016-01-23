@@ -60,4 +60,21 @@ public class SysUser {
     public void setLocked(String locked) {
         this.locked = locked == null ? null : locked.trim();
     }
+
+	public SysUser(String id, String usercode, String username,
+			String password, String salt, String locked) {
+		super();
+		this.id = id;
+		this.usercode = usercode;
+		this.username = username;
+		this.password = password;
+		this.salt = salt;
+		this.locked = locked;
+	}
+
+	public SysUser() {
+		super();
+	}
+    
+	
 }
