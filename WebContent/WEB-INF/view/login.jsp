@@ -52,15 +52,15 @@
                                 <div class="form-group">
                                     <input id="password" name="password" class="form-control" placeholder="密码" name="password" type="password" value="">
                                 </div>
-                                <<div class="form-group">
+                                <div class="form-group">
                                     <!-- <input class="form-control" placeholder="验证码" name="randcode" type="" value=""> -->
-                                    <input id="randomcode" name="randomcode" placeholder="验证码" size="8" />
+                                    <input id="randomcode" class="form-control" name="randomcode" placeholder="验证码" size="8" />
                                 </div> 
                                 <div class="checkbox">
                                     <label>
                                         <input name="remember" type="checkbox" value="Remember Me">记住我
                                     </label>
-                                    <imgid="randomcode_img" src="${ctx}/validatecode.jsp" title="看不清可单击图片刷新" alt=""
+                                    <img id="randomcode_img" src="${ctx}/validatecode.jsp" title="看不清可单击图片刷新" alt=""
 								onclick="this.src='${ctx}/validatecode.jsp?id='+Math.random();" width="56" height="20" align='absMiddle' />
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
