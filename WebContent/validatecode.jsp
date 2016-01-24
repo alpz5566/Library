@@ -8,7 +8,7 @@
 <%@ page import="java.awt.image.BufferedImage"%>
 <%@ page import="javax.imageio.ImageIO"%>
 <%
-	int width = 80;
+	int width = 60;
 	int height = 32;
 	//create the image
 	BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);

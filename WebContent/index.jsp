@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	初始页面
+	index页面
 </body>
 </html>

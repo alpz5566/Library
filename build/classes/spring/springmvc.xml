@@ -85,11 +85,11 @@
 	
 	<!-- 在springmvc中加入shiro配置  -->
 	<!-- 开启aop，对类代理 -->
- 	<!-- <aop:config proxy-target-class="true"></aop:config>
- 	开启注解支持
+ 	<aop:config proxy-target-class="true"></aop:config>
+ 	<!-- 开启注解支持 -->
     <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
         <property name="securityManager" ref="securityManager"/>
-    </bean> -->
+    </bean> 
       
     <!-- 单机版solr -->
 	<!-- <bean id="SolrServer" class="org.apache.solr.client.solrj.impl.HttpSolrServer">

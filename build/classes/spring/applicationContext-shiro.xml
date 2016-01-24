@@ -17,8 +17,7 @@
 			
 			<property name="loginUrl" value="/user/login.action" />
 			<!-- 认证成功统一跳转到first.action，建议不配置，shiro认证成功自动到上一个请求路径 -->
-			<!-- <property name="successUrl" value="/index.action" />    -->
-			<property name="successUrl" value="/index.action" />
+			<property name="successUrl" value="/index/home.action" /> 
 			<!-- <property name="successUrl" value="/welcome.action" /> -->
 			<!-- 通过unauthorizedUrl指定没有权限操作时跳转页面-->
 			<property name="unauthorizedUrl" value="/refuse.jsp" /> 
@@ -34,7 +33,7 @@
 			<property name="filterChainDefinitions">
 				<value>
 					<!-- 对静态资源匿名访问 -->
-					/images/** = anon
+					/img/** = anon
 					/js/** = anon
 					/css/** = anon 
 					/plugins/** = anon
@@ -54,7 +53,7 @@
  					/** = authc
 					
 					<!-- 匿名访问 -->
-					<!-- /** = anon -->
+					<!-- /** = anon  -->
 					
 				</value>
 			</property>
@@ -72,7 +71,7 @@
 	</bean>
 	
 	<!-- realm -->
-	<bean id="customRealm" class="com.zondy.Lgworknet.realm.CustomRealm">
+	<bean id="customRealm" class="com.book.library.realm.CustomRealm">
 		<!-- 将凭证匹配器设置到realm中，realm按照凭证匹配器的要求进行散列 -->
 		<property name="credentialsMatcher" ref="credentialsMatcher"/> 
 	</bean>
@@ -100,7 +99,7 @@
     <!-- 自定义form认证过虑器 -->
 	<!-- 基于Form表单的身份验证过滤器，不配置将也会注册此过虑器，表单中的用户账号、密码及loginurl将采用默认值，建议配置 -->
 	<bean id="formAuthenticationFilter" 
-		class="com.zondy.Lgworknet.realm.CustomFormAuthenticationFilter ">
+		class="com.book.library.realm.CustomFormAuthenticationFilter ">
 			<!-- 表单中账号的input名称 -->
 			<property name="usernameParam" value="username" />
 			<!-- 表单中密码的input名称 -->

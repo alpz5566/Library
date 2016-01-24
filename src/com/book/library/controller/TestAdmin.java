@@ -18,7 +18,7 @@ import com.book.library.utill.AjaxResult;
  *
  */
 @Controller  //申明这是个控制器
-@RequestMapping(value="/user")
+@RequestMapping(value="/user1")
 public class TestAdmin {
 	
 	@Autowired

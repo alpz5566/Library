@@ -47,10 +47,10 @@
                         <form role="form" id="loginform" action="${ctx}/user/login.action" method="post">
                             <fieldset>
                                 <div class="form-group">
-                                    <input id="username" name="username" class="form-control" placeholder="用户名" name="email" type="email" autofocus>
+                                    <input id="username" name="username" class="form-control" placeholder="用户名"  autofocus>
                                 </div>
                                 <div class="form-group">
-                                    <input id="password" name="password" class="form-control" placeholder="密码" name="password" type="password" value="">
+                                    <input id="password" name="password" class="form-control" placeholder="密码"  type="password" >
                                 </div>
                                 <div class="form-group">
                                     <!-- <input class="form-control" placeholder="验证码" name="randcode" type="" value=""> -->
@@ -58,14 +58,14 @@
                                 </div> 
                                 <div class="checkbox">
                                     <label>
-                                        <input name="remember" type="checkbox" value="Remember Me">记住我
+                                        <input name="rememberMe" type="checkbox" value="Remember Me" >记住我
                                     </label>
                                     <img id="randomcode_img" src="${ctx}/validatecode.jsp" title="看不清可单击图片刷新" alt=""
 								onclick="this.src='${ctx}/validatecode.jsp?id='+Math.random();" width="56" height="20" align='absMiddle' />
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
                                 <div class="error">${error}</div>
-                                <a href="index.html" class="btn btn-lg btn-success btn-block" onclick="login()">登陆</a>
+                                <a class="btn btn-lg btn-success btn-block" onclick="login()">登陆</a>
                             </fieldset>
                         </form>
                     </div>

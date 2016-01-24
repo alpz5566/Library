@@ -11,7 +11,7 @@ public class IndexController {
 	 * 测试用例
 	 * @return
 	 */
-	@RequestMapping(value="/test")
+	@RequestMapping(value="/home")
 	public String toIndexPage(){
 		return "index";
 	}

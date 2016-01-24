@@ -8,9 +8,9 @@
 <%@ page import="java.awt.image.BufferedImage"%>
 <%@ page import="javax.imageio.ImageIO"%>
 <%
-	int width = 80;
+	int width = 60;
 	int height = 32;
-	//create the image
+	//create the images
 	BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 	Graphics g = image.getGraphics();
 	// set the background color
