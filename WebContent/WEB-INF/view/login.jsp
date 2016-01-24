@@ -11,6 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <style>.error{color:red;margin-left:auto;margin-right:auto;}</style>
 
     <title>图书管理系统</title>
 
@@ -43,24 +44,28 @@
                         <h3 class="panel-title">图书管理系统</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form">
+                        <form role="form" id="loginform" action="${ctx}/user/login.action" method="post">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="用户名" name="email" type="email" autofocus>
+                                    <input id="username" name="username" class="form-control" placeholder="用户名" name="email" type="email" autofocus>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="密码" name="password" type="password" value="">
+                                    <input id="password" name="password" class="form-control" placeholder="密码" name="password" type="password" value="">
                                 </div>
-                                <!-- <div class="form-group">
-                                    <input class="form-control" placeholder="验证码" name="randcode" type="" value="">
-                                </div> -->
+                                <<div class="form-group">
+                                    <!-- <input class="form-control" placeholder="验证码" name="randcode" type="" value=""> -->
+                                    <input id="randomcode" name="randomcode" placeholder="验证码" size="8" />
+                                </div> 
                                 <div class="checkbox">
                                     <label>
                                         <input name="remember" type="checkbox" value="Remember Me">记住我
                                     </label>
+                                    <imgid="randomcode_img" src="${ctx}/validatecode.jsp" title="看不清可单击图片刷新" alt=""
+								onclick="this.src='${ctx}/validatecode.jsp?id='+Math.random();" width="56" height="20" align='absMiddle' />
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
-                                <a href="index.html" class="btn btn-lg btn-success btn-block">登陆</a>
+                                <div class="error">${error}</div>
+                                <a href="index.html" class="btn btn-lg btn-success btn-block" onclick="login()">登陆</a>
                             </fieldset>
                         </form>
                     </div>
@@ -80,6 +85,22 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="${ctx}/sbadmin/sb-admin/dist/js/sb-admin-2.js"></script>
-
+	<script type="text/javascript">
+	
+	function loginsubmit(){
+		var username = document.getElementById("username").value;
+		var password = document.getElementById("password").value;
+		
+		alert(username+password);
+		document.getElementById("loginform").submit();
+		
+	}
+	
+	function login(){
+		var username = $("#username").val();
+		$("#loginform").submit();
+	}
+	
+	</script>
 </body>
 </html>
