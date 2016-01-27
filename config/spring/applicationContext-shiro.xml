@@ -37,6 +37,8 @@
 					/js/** = anon
 					/css/** = anon 
 					/plugins/** = anon
+					/sbadmin/** = anon
+					/echarts/** = anon
 					<!-- 验证码，可匿名访问 -->
 					/validatecode.jsp = anon
 					<!-- 请求logout.action地址自动退出，shiro清除session -->
