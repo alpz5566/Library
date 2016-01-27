@@ -12,15 +12,13 @@ import com.book.library.po.SysUser;
 import com.book.library.service.SysUserService;
 import com.book.library.utill.AjaxResult;
 
-
-
 /**
  * 页面测试
  * @author L------F
  *
  */
 @Controller  //申明这是个控制器
-@RequestMapping(value="/user")
+@RequestMapping(value="/user1")
 public class TestAdmin {
 	
 	@Autowired

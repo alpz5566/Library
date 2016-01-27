@@ -11,20 +11,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <style>.error{color:red;margin-left:auto;margin-right:auto;}</style>
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>图书管理系统</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="${ctx}/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${ctx}/sbadmin/sb-admin/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href="${ctx}/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+    <link href="${ctx}/sbadmin/sb-admin/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="${ctx}/dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="${ctx}/sbadmin/sb-admin/dist/css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="${ctx}/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="${ctx}/sbadmin/sb-admin/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -43,24 +44,28 @@
                         <h3 class="panel-title">图书管理系统</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form">
+                        <form role="form" id="loginform" action="${ctx}/user/login.action" method="post">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="用户名" name="email" type="email" autofocus>
+                                    <input id="username" name="username" class="form-control" placeholder="用户名"  autofocus>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="密码" name="password" type="password" value="">
+                                    <input id="password" name="password" class="form-control" placeholder="密码"  type="password" >
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="验证码" name="randcode" type="" value="">
-                                </div>
+                                    <!-- <input class="form-control" placeholder="验证码" name="randcode" type="" value=""> -->
+                                    <input id="randomcode" class="form-control" name="randomcode" placeholder="验证码" size="8" />
+                                </div> 
                                 <div class="checkbox">
                                     <label>
-                                        <input name="remember" type="checkbox" value="Remember Me">记住我
+                                        <input name="rememberMe" type="checkbox" value="Remember Me" >记住我
                                     </label>
+                                    <img id="randomcode_img" src="${ctx}/validatecode.jsp" title="看不清可单击图片刷新" alt=""
+								onclick="this.src='${ctx}/validatecode.jsp?id='+Math.random();" width="56" height="20" align='absMiddle' />
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
-                                <a href="index.html" class="btn btn-lg btn-success btn-block">登陆</a>
+                                <div class="error">${error}</div>
+                                <a class="btn btn-lg btn-success btn-block" onclick="login()">登陆</a>
                             </fieldset>
                         </form>
                     </div>
@@ -70,16 +75,32 @@
     </div>
 
     <!-- jQuery -->
-    <script src="${ctx}/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="${ctx}/sbadmin/sb-admin/bower_components/jquery/dist/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="${ctx}/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="${ctx}/sbadmin/sb-admin/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="${ctx}/bower_components/metisMenu/dist/metisMenu.min.js"></script>
+    <script src="${ctx}/sbadmin/sb-admin/bower_components/metisMenu/dist/metisMenu.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="${ctx}/dist/js/sb-admin-2.js"></script>
-
+    <script src="${ctx}/sbadmin/sb-admin/dist/js/sb-admin-2.js"></script>
+	<script type="text/javascript">
+	
+	function loginsubmit(){
+		var username = document.getElementById("username").value;
+		var password = document.getElementById("password").value;
+		
+		alert(username+password);
+		document.getElementById("loginform").submit();
+		
+	}
+	
+	function login(){
+		var username = $("#username").val();
+		$("#loginform").submit();
+	}
+	
+	</script>
 </body>
 </html>
