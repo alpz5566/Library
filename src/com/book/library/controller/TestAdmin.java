@@ -15,7 +15,7 @@ import com.book.library.utill.AjaxResult;
 
 
 /**
- * 测试
+ * 页面测试
  * @author L------F
  *
  */
@@ -39,7 +39,37 @@ public class TestAdmin {
 		return AjaxResult.ajaxResult("全部用户", users);
 	}
 	
+	@RequestMapping(value="/insert")
+	public String insert(){
+		sysUserService.insert();
+		System.out.println("chenggong");
+		return "test/test";
+		
+	}
 	
+	@RequestMapping(value="/delete")
+	public void delete(){
+		sysUserService.delete();
+		System.out.println("hello world");
+	}
 	
+	@RequestMapping(value="/update")
+	public void update(){
+		sysUserService.update();
+		System.out.println("success");
+	}
+	
+	@RequestMapping(value="/login")
+	public SysUser login(String username,String password){
+	 SysUser user= null;
+	try {
+		user = sysUserService.login(username, password);
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	System.out.println(user.getUsername()+" "+user.getPassword());
+		return user;
+	}
 
 }

@@ -75,6 +75,11 @@ public class SysUser {
 	public SysUser() {
 		super();
 	}
+
+	public SysUser(String username, String password) {
+		super();
+		this.username = username;
+		this.password = password;
+	}
     
-	
 }
