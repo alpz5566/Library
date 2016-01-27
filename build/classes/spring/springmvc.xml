@@ -90,6 +90,15 @@
     <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
         <property name="securityManager" ref="securityManager"/>
     </bean> 
+    
+    <!-- shiro无权限时跳转页面 -->
+    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                <prop key="org.apache.shiro.authz.UnauthorizedException">/unauthorized</prop>
+            </props>
+        </property>
+    </bean>
       
     <!-- 单机版solr -->
 	<!-- <bean id="SolrServer" class="org.apache.solr.client.solrj.impl.HttpSolrServer">
