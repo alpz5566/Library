@@ -18,4 +18,7 @@ public interface SysService {
 	
 	//根据用户id查询权限范围的url
 	public List<SysPermission> findPermissionListByUserId(String userid) throws Exception;
+
+	//根据id查询用户信息
+	public SysUser findSysUserByUserId(String id) throws Exception;
 }

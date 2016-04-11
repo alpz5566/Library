@@ -54,7 +54,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="￥{}">毕业设计课题选题系统</a>
+                <a class="navbar-brand" href="${ctx}/index/home.action">毕业设计课题选题系统</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -256,7 +256,7 @@
                     <ul class="dropdown-menu dropdown-user">
                         <li><a href="#"><i class="fa fa-user fa-fw"></i> 用户信息</a>
                         </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> 修改密码</a>
+                        <li><a href="${ctx}/index/toUpdatePasswordPage.action"><i class="fa fa-gear fa-fw"></i> 修改密码</a>
                         </li>
                         <li class="divider"></li>
                         <li><a href="javascript:logout()"><i class="fa fa-sign-out fa-fw"></i> 注销</a>

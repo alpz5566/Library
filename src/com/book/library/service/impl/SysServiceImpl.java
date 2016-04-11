@@ -77,6 +77,14 @@ public class SysServiceImpl implements SysService{
 		
 		return null;
 	}
+	
+	public SysUser findSysUserByUserId(String id) throws Exception{
+		SysUserExample sysUserExample = new SysUserExample();
+		SysUserExample.Criteria criteria = sysUserExample.createCriteria();
+		criteria.andIdEqualTo(id);
+		SysUser sysuser = sysUserMapper.selectByPrimaryKey(id);
+		return sysuser;
+	}
 
 	@Override
 	public List<SysPermission> findMenuListByUserId(String userid) throws Exception {
