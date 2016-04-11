@@ -3,6 +3,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import com.book.library.po.SysUser;
 import com.book.library.po.SysUserExample;
+import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 
 /**
  * 
@@ -21,5 +22,7 @@ public interface SysUserService {
 	void update();
 	
 	SysUser login(String username,String password)throws Exception;
+
+	List<SysUser> findAllUser(PageBounds pageBounds);
 	    
 }

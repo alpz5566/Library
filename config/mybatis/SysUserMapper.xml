@@ -226,5 +226,8 @@
     where id = #{id,jdbcType=VARCHAR}
   </update>
   
+  <select id="findAllUser"  resultMap="BaseResultMap">
+  	select * from sys_user
+  </select>
   
 </mapper>

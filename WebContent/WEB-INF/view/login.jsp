@@ -35,7 +35,7 @@
     <![endif]-->
 
 </head>
-<body>
+<body onkeydown="keyLogin();">
 <div class="container">
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
@@ -65,7 +65,7 @@
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
                                 <div class="error">${error}</div>
-                                <a class="btn btn-lg btn-success btn-block" onclick="login()">登陆</a>
+                                <a id="loginclick" class="btn btn-lg btn-success btn-block" onclick="login()">登陆</a>
                             </fieldset>
                         </form>
                     </div>
@@ -101,6 +101,12 @@
 		$("#loginform").submit();
 	}
 	
+	//按回车键登陆
+	function keyLogin(){
+		 if (event.keyCode==13)  //回车键的键值为13
+		   //document.getElementById("loginclick").click(); //调用登录按钮的登录事件
+		   $("#loginclick").click();
+	}
 	</script>
 </body>
 </html>

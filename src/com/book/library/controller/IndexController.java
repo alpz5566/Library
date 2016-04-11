@@ -13,7 +13,7 @@ public class IndexController {
 	 * 测试用例
 	 * @return
 	 */
-	@RequiresPermissions("item:query111")
+//	@RequiresPermissions("item:query111")
 	@RequestMapping(value="/home")
 	public String toIndexPage(){
 		return "index";

@@ -11,6 +11,7 @@ import com.book.library.mapper.SysUserMapper;
 import com.book.library.po.SysUser;
 import com.book.library.po.SysUserExample;
 import com.book.library.service.SysUserService;
+import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 /**
  * 
  * 接口实现类
@@ -33,6 +34,18 @@ public class SysUserServiceImpl implements SysUserService{
 		List<SysUser> users = sysUserMapper.selectByExample(example);
 		return users;
 	}
+	
+	@Override
+	public List<SysUser> findAllUser(PageBounds pageBounds) {
+//		SysUserExample example = new SysUserExample();
+//		SysUserExample.Criteria criteria = example.createCriteria();
+//		select *from sys_user where id like 'lisi';
+//		criteria.andIdEqualTo("lisi");
+//		List<SysUser> users = sysUserMapper.selectByExample(example,pageBounds);
+		List<SysUser> users = sysUserMapper.findAllUser(pageBounds);
+		return users;
+	}
+	
 
 	@Override
 	public void insert() {
@@ -72,6 +85,9 @@ public class SysUserServiceImpl implements SysUserService{
 		SysUser user = new SysUser("long", "long");
 		return user;
 	}
+
+
+	
 
 
 

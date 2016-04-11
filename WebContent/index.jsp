@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	index页面
+	<%
+		response.sendRedirect("index/home.action");
+	%>
 </body>
 </html>

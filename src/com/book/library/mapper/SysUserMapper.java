@@ -2,6 +2,8 @@ package com.book.library.mapper;
 
 import com.book.library.po.SysUser;
 import com.book.library.po.SysUserExample;
+import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
+
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -27,6 +29,10 @@ public interface SysUserMapper {
     int updateByPrimaryKeySelective(SysUser record);
 
     int updateByPrimaryKey(SysUser record);
+
+	List<SysUser> selectByExample(SysUserExample example, PageBounds pageBounds);
+
+	List<SysUser> findAllUser(PageBounds pageBounds);
     
     
 }
