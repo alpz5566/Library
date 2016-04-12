@@ -278,7 +278,7 @@
                                     <a href="${ctx}/index/mysubjectlist">我的选题列表</a>
                                 </li>
                                 <li>
-                                    <a href="${ctx}/index/addsubject">添加选题</a>
+                                    <a href="morris.html">添加选题</a>
                                 </li>
                                 <li>
                                     <a href="morris.html">批量导入选题</a>
@@ -346,7 +346,7 @@
 
 		<!-- 华丽丽分割线。。。。。 -->
         <div id="page-wrapper">
-        	主页面
+        	我的选题主页面
         </div>
         <!-- /#page-wrapper -->
 

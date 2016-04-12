@@ -36,12 +36,17 @@ public class IndexController {
 	 */
 //	@RequiresPermissions("item:query111")
 	@RequestMapping(value="/home")
-	public String toIndexPage(ServletRequest request,Model model){
-		Subject subject = SecurityUtils.getSubject();
-		ActiveUser activeUser = (ActiveUser)subject.getPrincipal();
-		String username = activeUser.getUsername();
-		System.err.println("用户名为：" + username);
-		model.addAttribute("activeUser", activeUser);
+	public String toIndexPage(ServletRequest request,Model model) throws Exception{
+		try {
+			Subject subject = SecurityUtils.getSubject();
+			ActiveUser activeUser = (ActiveUser)subject.getPrincipal();
+			String username = activeUser.getUsername();
+			System.err.println("用户名为：" + username);
+			model.addAttribute("activeUser", activeUser);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return "index";
 	}
 	
@@ -92,4 +97,18 @@ public class IndexController {
 		}
 	}
 	
+	@RequestMapping(value="/subjectlist")
+	public String listSubject(){
+		return "subject/list";
+	}
+	
+	@RequestMapping(value="mysubjectlist")
+	public String mySubjectList(){
+		return "subject/mysubject";
+	}
+	
+	@RequestMapping(value="addsubject")
+	public String saveSubjectList(){
+		return "subject/savesubject";
+	}
 }

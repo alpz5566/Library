@@ -443,6 +443,7 @@
 				$("#error").text("两次密码输入不一致");
 			}else{
 				$("#changepwd").submit();
+				alert("修改密码成功！");
 			}
 		}
 	</script>

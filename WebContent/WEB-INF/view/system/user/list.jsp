@@ -26,12 +26,18 @@
     <!-- Custom CSS -->
     <link href="${ctx}/sbadmin/sb-admin/dist/css/sb-admin-2.css" rel="stylesheet">
 
-    <!-- Morris Charts CSS -->
-    <link href="${ctx}/sbadmin/sb-admin/bower_components/morrisjs/morris.css" rel="stylesheet">
+	<!-- DataTables CSS -->
+    <link href="${ctx}/sbadmin/sb-admin/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet">
 
+    <!-- DataTables Responsive CSS -->
+    <link href="${ctx}/sbadmin/sb-admin/bower_components/datatables-responsive/css/responsive.dataTables.scss" rel="stylesheet">
+
+	<link href="${ctx}/sbadmin/sb-admin/bower_components/morrisjs/morris.css" rel="stylesheet">
     <!-- Custom Fonts -->
     <link href="${ctx}/sbadmin/sb-admin/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+	<!-- Custom CSS -->
+    <link href="${ctx}/sbadmin/sb-admin/dist/css/sb-admin-2.css" rel="stylesheet">
 </head>
 
 <body>
@@ -275,10 +281,10 @@
                                     <a href="${ctx}/index/subjectlist.action">所有课题</a>
                                 </li>
                                 <li>
-                                    <a href="${ctx}/index/mysubjectlist">我的选题列表</a>
+                                    <a href="morris.html">我的选题列表</a>
                                 </li>
                                 <li>
-                                    <a href="${ctx}/index/addsubject">添加选题</a>
+                                    <a href="morris.html">添加选题</a>
                                 </li>
                                 <li>
                                     <a href="morris.html">批量导入选题</a>
@@ -323,7 +329,7 @@
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 系统管理<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="${ctx}/sysuser/userlist.action">用户管理</a>
+                                    <a href="flot.html">用户管理</a>
                                 </li>
                                 <li>
                                     <a href="morris.html">角色管理</a>
@@ -347,6 +353,143 @@
 		<!-- 华丽丽分割线。。。。。 -->
         <div id="page-wrapper">
         	主页面
+        	<div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            DataTables Advanced Tables
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="dataTable_wrapper">
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                    <thead>
+                                        <tr>
+                                            <th>Rendering engine</th>
+                                            <th>Browser</th>
+                                            <th>Platform(s)</th>
+                                            <th>Engine version</th>
+                                            <th>CSS grade</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="odd gradeX">
+                                            <td>Trident</td>
+                                            <td>Internet Explorer 4.0</td>
+                                            <td>Win 95+</td>
+                                            <td class="center">4</td>
+                                            <td class="center">X</td>
+                                        </tr>
+                                        <tr class="even gradeC">
+                                            <td>Trident</td>
+                                            <td>Internet Explorer 5.0</td>
+                                            <td>Win 95+</td>
+                                            <td class="center">5</td>
+                                            <td class="center">C</td>
+                                        </tr>
+                                        <tr class="odd gradeA">
+                                            <td>Trident</td>
+                                            <td>Internet Explorer 5.5</td>
+                                            <td>Win 95+</td>
+                                            <td class="center">5.5</td>
+                                            <td class="center">A</td>
+                                        </tr>
+                                        <tr class="even gradeA">
+                                            <td>Trident</td>
+                                            <td>Internet Explorer 6</td>
+                                            <td>Win 98+</td>
+                                            <td class="center">6</td>
+                                            <td class="center">A</td>
+                                        </tr>
+                                        <tr class="odd gradeA">
+                                            <td>Trident</td>
+                                            <td>Internet Explorer 7</td>
+                                            <td>Win XP SP2+</td>
+                                            <td class="center">7</td>
+                                            <td class="center">A</td>
+                                        </tr>
+                                        <tr class="even gradeA">
+                                            <td>Trident</td>
+                                            <td>AOL browser (AOL desktop)</td>
+                                            <td>Win XP</td>
+                                            <td class="center">6</td>
+                                            <td class="center">A</td>
+                                        </tr>
+                                        <tr class="gradeA">
+                                            <td>Gecko</td>
+                                            <td>Firefox 1.0</td>
+                                            <td>Win 98+ / OSX.2+</td>
+                                            <td class="center">1.7</td>
+                                            <td class="center">A</td>
+                                        </tr>
+                                        <tr class="gradeA">
+                                            <td>Gecko</td>
+                                            <td>Firefox 1.5</td>
+                                            <td>Win 98+ / OSX.2+</td>
+                                            <td class="center">1.8</td>
+                                            <td class="center">A</td>
+                                        </tr>
+                                        <tr class="gradeA">
+                                            <td>Gecko</td>
+                                            <td>Firefox 2.0</td>
+                                            <td>Win 98+ / OSX.2+</td>
+                                            <td class="center">1.8</td>
+                                            <td class="center">A</td>
+                                        </tr>
+                                        <tr class="gradeA">
+                                            <td>Gecko</td>
+                                            <td>Firefox 3.0</td>
+                                            <td>Win 2k+ / OSX.3+</td>
+                                            <td class="center">1.9</td>
+                                            <td class="center">A</td>
+                                        </tr>
+                                        <tr class="gradeA">
+                                            <td>Gecko</td>
+                                            <td>Camino 1.0</td>
+                                            <td>OSX.2+</td>
+                                            <td class="center">1.8</td>
+                                            <td class="center">A</td>
+                                        </tr>
+                                        <tr class="gradeA">
+                                            <td>Gecko</td>
+                                            <td>Camino 1.5</td>
+                                            <td>OSX.3+</td>
+                                            <td class="center">1.8</td>
+                                            <td class="center">A</td>
+                                        </tr>
+                                        <tr class="gradeA">
+                                            <td>Gecko</td>
+                                            <td>Netscape 7.2</td>
+                                            <td>Win 95+ / Mac OS 8.6-9.2</td>
+                                            <td class="center">1.7</td>
+                                            <td class="center">A</td>
+                                        </tr>
+                                        <tr class="gradeA">
+                                            <td>Gecko</td>
+                                            <td>Netscape Browser 8</td>
+                                            <td>Win 98SE+</td>
+                                            <td class="center">1.7</td>
+                                            <td class="center">A</td>
+                                        </tr>
+                                        <tr class="gradeA">
+                                            <td>Gecko</td>
+                                            <td>Netscape Navigator 9</td>
+                                            <td>Win 98+ / OSX.2+</td>
+                                            <td class="center">1.8</td>
+                                            <td class="center">A</td>
+                                        </tr>
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.table-responsive -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
         </div>
         <!-- /#page-wrapper -->
 
@@ -365,8 +508,11 @@
     <!-- Custom Theme JavaScript -->
     <script src="${ctx}/sbadmin/sb-admin/dist/js/sb-admin-2.js"></script>
 
-	<script type="text/javascript">
-	
+	<!-- DataTables JavaScript -->
+    <script src="${ctx}/sbadmin/sb-admin/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="${ctx}/sbadmin/sb-admin/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
+    
+	<script type="text/javascript">	
 	//注销
 	function logout() {
 		var r = confirm("您确定要退出系统吗？")
@@ -374,6 +520,12 @@
 			location.href = '${ctx}/logout.action';
 		}
 	}
+	
+	$(document).ready(function() {
+        $('#dataTables-example').DataTable({
+                responsive: true
+        });
+    });
 	</script>
 </body>
 
