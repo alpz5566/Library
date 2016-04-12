@@ -52,10 +52,10 @@
 					/index.action = user
 								
 					<!-- 所有url都要验证才能访问 -->
- 					<!-- /** = authc -->
+ 					/** = authc
 					
 					<!-- 匿名访问 -->
-					/** = anon
+					<!-- /** = anon -->
 					
 				</value>
 			</property>

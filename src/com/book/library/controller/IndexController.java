@@ -111,4 +111,9 @@ public class IndexController {
 	public String saveSubjectList(){
 		return "subject/savesubject";
 	}
+	
+	@RequestMapping(value="/welcome")
+	public String welcome(){
+		return "welcome";
+	}
 }

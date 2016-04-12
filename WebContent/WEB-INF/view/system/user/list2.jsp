@@ -26,6 +26,13 @@
 
     <!-- Custom CSS -->
     <link href="${ctx}/sbadmin/sb-admin/dist/css/sb-admin-2.css" rel="stylesheet">
+    
+    <!-- DataTables CSS -->
+    <link href="${ctx}/sbadmin/sb-admin/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet">
+
+    <!-- DataTables Responsive CSS -->
+    <link href="${ctx}/sbadmin/sb-admin/bower_components/datatables-responsive/css/responsive.dataTables.scss" rel="stylesheet">
+    
 
     <!-- Morris Charts CSS -->
     <link href="${ctx}/sbadmin/sb-admin/bower_components/morrisjs/morris.css" rel="stylesheet">
@@ -347,7 +354,51 @@
 
 		<!-- 华丽丽分割线。。。。。 -->
         <div id="page-wrapper">
-        	主页面
+        		<div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            用户列表
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="dataTable_wrapper">
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                    <thead>
+                                        <tr>
+                                            <th>用户id</th>
+                                            <th>用户名</th>
+                                            <th>用户角色</th>
+                                            <th>是否锁定</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    	<c:forEach items="${users}" var="user">
+	                                        <tr class="odd gradeX">
+	                                            <td>${user.id}</td>
+	                                            <td>${user.username}</td>
+	                                            <td class="center">sj</td>
+	                                            <%-- <td class="center">${user.locked}</td> --%>
+	                                            <td class="center">${user.locked}</td>
+	                                            
+	                                            <td class="center">
+	                                            	<button data-brackets-id="250" type="button" class="btn btn-warning">修改</button>
+	                                            	<button data-brackets-id="251" type="button" class="btn btn-danger">删除</button>
+	                                            </td>
+	                                        </tr>                                    		
+                                    	</c:forEach>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.table-responsive -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
         </div>
         <!-- /#page-wrapper -->
 
@@ -362,19 +413,29 @@
 
     <!-- Metis Menu Plugin JavaScript -->
     <script src="${ctx}/sbadmin/sb-admin/bower_components/metisMenu/dist/metisMenu.min.js"></script>
-
+   
     <!-- Custom Theme JavaScript -->
     <script src="${ctx}/sbadmin/sb-admin/dist/js/sb-admin-2.js"></script>
+    
+    <!-- DataTables JavaScript -->
+    <script src="${ctx}/sbadmin/sb-admin/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="${ctx}/sbadmin/sb-admin/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
 
 	<script type="text/javascript">
 	
-	//注销
-	function logout() {
-		var r = confirm("您确定要退出系统吗？")
-		if(r){
-			location.href = '${ctx}/logout.action';
+		//注销
+		function logout() {
+			var r = confirm("您确定要退出系统吗？")
+			if(r){
+				location.href = '${ctx}/logout.action';
+			}
 		}
-	}
+		
+		$(document).ready(function() {
+	        $('#dataTables-example').DataTable({
+	                responsive: true
+	        });
+	    });
 	</script>
 </body>
 

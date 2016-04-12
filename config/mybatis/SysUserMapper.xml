@@ -236,4 +236,13 @@
   	select * from sys_user
   </select>
   
+  <!-- 根据userid查询出角色列表 -->
+  <select id="selectRoleByUserid" resultType="java.util.List">
+  	select distinct name 
+	from sys_role 
+	where id in (select sys_role_id 
+		from sys_user_role 
+	    where sys_user_id = #{0,jdbcType=VARCHAR})
+  </select>
+  
 </mapper>
