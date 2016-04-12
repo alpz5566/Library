@@ -33,6 +33,8 @@ public interface SysUserMapper {
 	List<SysUser> selectByExample(SysUserExample example, PageBounds pageBounds);
 
 	List<SysUser> findAllUser(PageBounds pageBounds);
+
+	void updatePassword(String id, String newpassword);
     
     
 }

@@ -226,6 +226,12 @@
     where id = #{id,jdbcType=VARCHAR}
   </update>
   
+  <update id="updatePassword">
+  	update sys_user 
+  	set password = #{1,jdbcType=VARCHAR}
+  	where id = #{0,jdbcType=VARCHAR}
+  </update>
+  
   <select id="findAllUser"  resultMap="BaseResultMap">
   	select * from sys_user
   </select>

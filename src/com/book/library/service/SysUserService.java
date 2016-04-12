@@ -24,5 +24,7 @@ public interface SysUserService {
 	SysUser login(String username,String password)throws Exception;
 
 	List<SysUser> findAllUser(PageBounds pageBounds);
+
+	void updatePassword(String id, String newpassword);
 	    
 }

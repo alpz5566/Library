@@ -86,6 +86,12 @@ public class SysUserServiceImpl implements SysUserService{
 		return user;
 	}
 
+	//修改密码方法
+	@Override
+	public void updatePassword(String id, String newpassword) {
+		sysUserMapper.updatePassword(id,newpassword);
+	}
+
 
 	
 

@@ -27,6 +27,7 @@
     <!-- Custom Fonts -->
     <link href="${ctx}/sbadmin/sb-admin/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+	<style>.error{color:red;margin-left:auto;margin-right:auto;}</style>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -383,23 +384,24 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form">
+                                    <form id="changepwd" role="form" action="${ctx}/index/updatePassword.action">
                                         <div class="form-group">
                                             <label>初始密码</label>
-                                            <input class="form-control" type="password" placeholder="请输入初始密码">
+                                            <input id="oldpassword" name="oldpassword" class="form-control" type="password" placeholder="请输入初始密码">
                                         </div>
                                         <div class="form-group">
                                             <label>新密码</label>
-                                            <input class="form-control" type="password" placeholder="请输入新密码">
+                                            <input id="newpassword" name="newpassword" class="form-control" type="password" placeholder="请输入新密码">
                                         </div>
                                         <div class="form-group">
-                                            <label>新密码</label>
-                                            <input class="form-control" type="password" placeholder="请输入新密码">
+                                            <label>确认新密码</label>
+                                            <input id="confirmpassword" name="confirmpassword" class="form-control" type="password" placeholder="请输入新密码">
                                         </div>
                                     </form>
-                                    
-	                                <button type="button" class="btn btn-success">修改</button>
-	                                <button type="button" class="btn btn-warning">重置</button>
+                                    <div id="error" class="error">${error}</div>
+	                                <button onclick="updatePassword();" type="button" class="btn btn-success">修改</button>
+	                                <button type="reset" name="button" class="btn btn-warning">重置</button>
+	                                
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                                 
@@ -431,7 +433,19 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="${ctx}/sbadmin/sb-admin/dist/js/sb-admin-2.js"></script>
-
+    
+	<script type="text/javascript">
+		function updatePassword(){
+			var newpassword = $("#newpassword").val();
+			var confirmpassword = $("#confirmpassword").val();
+			if(!(newpassword == confirmpassword)){
+				/* alert("两次密码输入不一致"); */
+				$("#error").text("两次密码输入不一致");
+			}else{
+				$("#changepwd").submit();
+			}
+		}
+	</script>
 </body>
 
 </html>
