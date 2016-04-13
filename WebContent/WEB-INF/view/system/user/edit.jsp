@@ -402,7 +402,7 @@
 								
 								        <div class="form-group">
 								            <form:label path="roleIds">角色列表：</form:label>
-								            <form:select path="roleIds" items="${roleList}" itemLabel="description" itemValue="id" multiple="true"/>
+								            <form:select path="roleIds" items="${roleList}" itemLabel="name" itemValue="id" multiple="true"/>
 								            (按住shift键多选)
 								        </div>
 								

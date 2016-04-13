@@ -15,7 +15,7 @@ public class SysUser {
 
     private String locked;
     
-    private List<String> roles; //拥有的角色列表
+    private List<String> roleIds; //拥有的角色列表
 
     public String getId() {
         return id;
@@ -86,12 +86,15 @@ public class SysUser {
 		this.password = password;
 	}
 
-	public List<String> getRoles() {
-		return roles;
+	public List<String> getRoleIds() {
+		return roleIds;
 	}
 
-	public void setRoles(List<String> roles) {
-		this.roles = roles;
+	public void setRoleIds(List<String> roleIds) {
+		this.roleIds = roleIds;
 	}
+
+	
+	
     
 }
