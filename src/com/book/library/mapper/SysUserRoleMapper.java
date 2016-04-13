@@ -27,4 +27,7 @@ public interface SysUserRoleMapper {
     int updateByPrimaryKeySelective(SysUserRole record);
 
     int updateByPrimaryKey(SysUserRole record);
+
+    //根据userid删除user-->role关联表
+	void deleteConnByUserId(String id);
 }

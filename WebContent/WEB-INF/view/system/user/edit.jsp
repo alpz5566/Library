@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
@@ -39,6 +40,12 @@
 
     <!-- Custom Fonts -->
     <link href="${ctx}/sbadmin/sb-admin/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    
+    <link rel="stylesheet" href="${ctx}/css/css.css
+    
+    <style>
+        ul.ztree {margin-top: 10px;border: 1px solid #617775;background: #f0f6e4;width:220px;height:200px;overflow-y:scroll;overflow-x:auto;}
+    </style>">
 
 </head>
 
@@ -358,40 +365,62 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            用户列表
+                            用户修改
                         </div>
-                        <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <div class="dataTable_wrapper">
-                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                    <thead>
-                                        <tr>
-                                            <th>用户id</th>
-                                            <th>用户名</th>
-                                            <th>用户角色</th>
-                                            <th>是否锁定</th>
-                                            <th>操作</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    	<c:forEach items="${users}" var="user">
-	                                        <tr class="odd gradeX">
-	                                            <td>${user.id}</td>
-	                                            <td>${user.username}</td>
-	                                            <td class="center">sj</td>
-	                                            <%-- <td class="center">${user.locked}</td> --%>
-	                                            <td class="center">${user.locked}</td>
-	                                            
-	                                            <td class="center">
-	                                            	<button onclick="updateSysUser(${user.id})" data-brackets-id="250" type="button" class="btn btn-warning">修改</button>
-	                                            	<button onclick="deleteSysUser(${user.id});" data-brackets-id="251" type="button" class="btn btn-danger">删除</button>
-	                                            </td>
-	                                        </tr>                                    		
-                                    	</c:forEach>
-                                    </tbody>
-                                </table>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <%-- <form id="changepwd" role="form" action="${ctx}/index/updatePassword.action">
+                                        <div class="form-group">
+                                            <label>用户名</label>
+                                            <input id="username" name="oldpassword" class="form-control" type="password" placeholder="请输入初始密码">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>角色列表</label>
+                                            <input id="newpassword" name="newpassword" class="form-control" type="password" placeholder="请输入新密码">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>确认新密码</label>
+                                            <input id="confirmpassword" name="confirmpassword" class="form-control" type="password" placeholder="请输入新密码">
+                                        </div>
+                                    </form> --%>
+                                    
+                                    <form:form method="post" commandName="sysuser">
+								        <form:hidden path="id"/>
+								        <form:hidden path="salt"/>
+								        <form:hidden path="locked"/>
+								
+								        <c:if test="${op ne '新增'}">
+								            <form:hidden path="password"/>
+								        </c:if>
+								
+								        <div class="form-group">
+								            <form:label path="username">用户名：</form:label>
+								            <form:input path="username"/>
+								        </div>								
+
+								
+								        <div class="form-group">
+								            <form:label path="roleIds">角色列表：</form:label>
+								            <form:select path="roleIds" items="${roleList}" itemLabel="description" itemValue="id" multiple="true"/>
+								            (按住shift键多选)
+								        </div>
+								
+								        <form:button>${op}</form:button>
+								
+								    </form:form>
+                                    
+                                    
+                                    <div id="error" class="error">${error}</div>
+	                                <button onclick="updatePassword();" type="button" class="btn btn-success">修改</button>
+	                                <button type="reset" name="button" class="btn btn-warning">重置</button>
+	                                
+                                </div>
+                                <!-- /.col-lg-6 (nested) -->
+                                
+                                <!-- /.col-lg-6 (nested) -->
                             </div>
-                            <!-- /.table-responsive -->
+                            <!-- /.row (nested) -->
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -421,6 +450,7 @@
     <script src="${ctx}/sbadmin/sb-admin/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
     <script src="${ctx}/sbadmin/sb-admin/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
 
+
 	<script type="text/javascript">
 	
 		//注销
@@ -429,19 +459,6 @@
 			if(r){
 				location.href = '${ctx}/logout.action';
 			}
-		}
-		
-		//删除用户
-		function deleteSysUser(userid){
-			var r = confirm("您确定要删除该用户嘛，删除后用户所属权限随即删除！")
-			if(r){
-				location.href = '${ctx}/sysuser/delete?id=' + userid;
-			}
-		}
-		
-		//修改用户
-		function updateSysUser(userid){
-			location.href = '${ctx}/sysuser/editpage?id=' + userid;
 		}
 		
 		$(document).ready(function() {

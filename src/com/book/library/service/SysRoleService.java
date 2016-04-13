@@ -8,5 +8,8 @@ import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 public interface SysRoleService {
 	
 	List<SysRole> findAllRoles(PageBounds pageBounds) throws Exception;
+
+	List<SysRole> findAll();
+
 	
 }

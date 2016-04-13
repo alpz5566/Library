@@ -8,10 +8,14 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.book.library.mapper.SysUserMapper;
+import com.book.library.mapper.SysUserRoleMapper;
 import com.book.library.po.SysUser;
 import com.book.library.po.SysUserExample;
+import com.book.library.po.SysUserRole;
+import com.book.library.po.SysUserRoleExample;
 import com.book.library.service.SysUserService;
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
+import com.sun.istack.internal.Nullable;
 /**
  * 
  * 接口实现类
@@ -24,6 +28,8 @@ public class SysUserServiceImpl implements SysUserService{
 	
 	@Autowired
 	private SysUserMapper sysUserMapper;
+	
+	private SysUserRoleMapper sysUserRoleMapper;
 
 	@Override
 	public List<SysUser> findAllUser() {
@@ -92,7 +98,45 @@ public class SysUserServiceImpl implements SysUserService{
 		sysUserMapper.updatePassword(id,newpassword);
 	}
 
+	//根据userid删除用户，并且删除对应sys_user_role中间表信息
+	@Override
+	@Nullable
+	public void deleteUserById(String id) {
+		//先删除关联表
+		SysUserRoleExample example = new SysUserRoleExample();
+		SysUserRoleExample.Criteria criteria = example.createCriteria();
+		criteria.andSysUserIdEqualTo(id);
+		List<SysUserRole> sysUserRoles = null;
+		try {
+			sysUserRoles = sysUserRoleMapper.selectByExample(example);
+			if(sysUserRoles != null && sysUserRoles.size() != 0){
+				sysUserRoleMapper.deleteConnByUserId(id);			
+			}
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		//再删除user表
+		sysUserMapper.deleteByPrimaryKey(id);
+	}
 
+	@Override
+	public SysUser findUserById(String id) {
+		SysUserExample example = new SysUserExample();
+		SysUserExample.Criteria criteria = example.createCriteria();
+		criteria.andIdEqualTo(id);
+		SysUser sysUser = sysUserMapper.selectByPrimaryKey(id);
+		return sysUser;
+	}
+
+	@Override
+	public void updateEntity(SysUser sysUser) {
+//		SysUserExample example = new SysUserExample();
+//		SysUserExample.Criteria criteria = example.createCriteria();
+		sysUserMapper.updateByPrimaryKey(sysUser);
+	}
+
+	
 	
 
 

@@ -27,4 +27,15 @@ public class SysRoleServiceImpl implements SysRoleService{
 		return null;
 	}
 
+	/**
+	 * 新增，修改用户时所需要的rolelist
+	 */
+	@Override
+	public List<SysRole> findAll() {
+		SysRoleExample example = new SysRoleExample();
+		SysRoleExample.Criteria criteria = example.createCriteria();
+		List<SysRole> roles = sysRoleMapper.selectByExample(example);
+		return roles;
+	}
+
 }

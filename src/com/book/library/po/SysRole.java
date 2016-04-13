@@ -1,5 +1,7 @@
 package com.book.library.po;
 
+import java.util.List;
+
 public class SysRole {
     private String id;
 
@@ -7,6 +9,8 @@ public class SysRole {
 
     private String available;
 
+    private List<String> permissions;
+    
     public String getId() {
         return id;
     }
@@ -30,4 +34,13 @@ public class SysRole {
     public void setAvailable(String available) {
         this.available = available == null ? null : available.trim();
     }
+
+	public List<String> getPermissions() {
+		return permissions;
+	}
+
+	public void setPermissions(List<String> permissions) {
+		this.permissions = permissions;
+	}
+    
 }

@@ -1,5 +1,7 @@
 package com.book.library.po;
 
+import java.util.List;
+
 public class SysUser {
     private String id;
 
@@ -12,6 +14,8 @@ public class SysUser {
     private String salt;
 
     private String locked;
+    
+    private List<String> roles; //拥有的角色列表
 
     public String getId() {
         return id;
@@ -80,6 +84,14 @@ public class SysUser {
 		super();
 		this.username = username;
 		this.password = password;
+	}
+
+	public List<String> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<String> roles) {
+		this.roles = roles;
 	}
     
 }

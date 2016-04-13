@@ -26,5 +26,11 @@ public interface SysUserService {
 	List<SysUser> findAllUser(PageBounds pageBounds);
 
 	void updatePassword(String id, String newpassword);
+
+	void deleteUserById(String id);
+
+	SysUser findUserById(String id);
+
+	void updateEntity(SysUser sysUser);
 	    
 }

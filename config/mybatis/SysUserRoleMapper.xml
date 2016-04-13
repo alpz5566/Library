@@ -178,4 +178,10 @@
       sys_role_id = #{sysRoleId,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
+  
+  <delete id="deleteConnByUserId" parameterType="java.lang.String">
+  	delete from sys_user_role
+  	where sys_user_id = #{id,jdbcType=VARCHAR}
+  </delete>
+
 </mapper>
