@@ -415,8 +415,8 @@
 								        </div> --%>
 								        
 								        <div class="form-group">
-								            <form:label path="roles">角色列表：</form:label>
-								            <form:select path="roles" items="${roleList}" itemLabel="name" itemValue="id" multiple="true"/>
+								            <form:label path="roleListStr">角色列表：</form:label>
+								            <form:select path="roleListStr" items="${roleList}" itemLabel="name" itemValue="id" multiple="true"/>
 								            (按住shift键多选)
 								        </div>
 								

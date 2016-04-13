@@ -30,4 +30,17 @@ public class SysUserRole {
     public void setSysRoleId(String sysRoleId) {
         this.sysRoleId = sysRoleId == null ? null : sysRoleId.trim();
     }
+
+	public SysUserRole(String id, String sysUserId, String sysRoleId) {
+		super();
+		this.id = id;
+		this.sysUserId = sysUserId;
+		this.sysRoleId = sysRoleId;
+	}
+
+	public SysUserRole() {
+		super();
+	}
+    
+    
 }

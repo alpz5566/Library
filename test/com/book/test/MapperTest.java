@@ -1,5 +1,6 @@
 package com.book.test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Before;
@@ -29,6 +30,15 @@ public class MapperTest {
 	
 	private SysRoleMapper sysRoleMapper;
 	
+	@Test
+	public void testListToSplit(){
+		List<String> strs = new ArrayList<String>();
+		strs.add("0adc305c");
+		strs.add("ebc9d647");
+		System.out.println(strs);
+				//["ebc8a441-c6f9-11e4-b137-0adc305c", "ebc9d647-c6f9-11e4-b137-0adc305c"];
+		
+	}
 	
 	@Test
 	public void testFindRoleByUserid(){

@@ -47,7 +47,7 @@ public class SysUserController {
 		return "system/user/list2";
 	}
 	
-	@RequestMapping(value="/delete",method={RequestMethod.POST})
+	@RequestMapping(value="/delete")
 	public String  deleteSysUser(@RequestParam(required = false)String id){
 		sysUserService.deleteUserById(id);
 		return "redirect:/sysuser/userlist";
@@ -68,7 +68,8 @@ public class SysUserController {
 		System.out.println(sysUser.getUsername());
 		System.out.println(sysUser.getId());
 		System.out.println(sysUser.getLocked());
-		System.out.println(sysUser.getRoleListStr());
+		System.out.println("权限集合字符串："+sysUser.getRoleListStr());		
+		System.out.println("权限集合"+sysUser.getRoles());
 		
 		sysUserService.updateEntity(sysUser);
 		return "redirect:/sysuser/userlist";

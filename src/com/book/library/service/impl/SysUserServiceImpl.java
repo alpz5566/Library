@@ -1,6 +1,7 @@
 package com.book.library.service.impl;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.apache.catalina.connector.Request;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,7 @@ public class SysUserServiceImpl implements SysUserService{
 	@Autowired
 	private SysUserMapper sysUserMapper;
 	
+	@Autowired
 	private SysUserRoleMapper sysUserRoleMapper;
 
 	@Override
@@ -131,6 +133,25 @@ public class SysUserServiceImpl implements SysUserService{
 
 	@Override
 	public void updateEntity(SysUser sysUser) {
+		//先修改用户的角色信息（先删再插入）
+		//获取roleid集合
+		List<String> roles = sysUser.getRoleListStr();
+		String userid = sysUser.getId();
+		if(roles.size() != 0){
+			//如果存在角色，先删除，再添加
+			SysUserRoleExample example = new SysUserRoleExample();
+			SysUserRoleExample.Criteria criteria = example.createCriteria();
+			criteria.andSysUserIdEqualTo(userid);
+			sysUserRoleMapper.deleteByExample(example);		
+		}
+		for(String role:roles){
+			//生成uuid
+			UUID uuid = UUID.randomUUID();
+			SysUserRole sysUserRole = new SysUserRole(uuid.toString(),
+					userid, role);
+			sysUserRoleMapper.insert(sysUserRole);
+		}
+		//修改基本信息
 		sysUserMapper.updateByPrimaryKey(sysUser);
 	}
 

@@ -5,6 +5,8 @@ import com.book.library.po.SysUserExample;
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 
 import java.util.List;
+import java.util.UUID;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface SysUserMapper {
@@ -37,6 +39,9 @@ public interface SysUserMapper {
 	void updatePassword(String id, String newpassword);
 
 	List<String> selectRoleByUserid(String id);
+
+	//添加sys_user_role
+	void setConnUserRole(UUID uuid,String userid, String role);
     
     
 }
