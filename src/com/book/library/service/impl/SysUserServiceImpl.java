@@ -134,10 +134,10 @@ public class SysUserServiceImpl implements SysUserService{
 	@Override
 	public void updateEntity(SysUser sysUser) {
 		//先修改用户的角色信息（先删再插入）
-		//获取roleid集合
-		List<String> roles = sysUser.getRoleListStr();
+		//获取roleid集合	
+		List<String> roles = sysUser.getRoleIds();
 		String userid = sysUser.getId();
-		if(roles.size() != 0 && roles != null){
+		if(roles.size() != 0){
 			//如果存在角色，先删除，再添加
 			SysUserRoleExample example = new SysUserRoleExample();
 			SysUserRoleExample.Criteria criteria = example.createCriteria();
@@ -151,6 +151,7 @@ public class SysUserServiceImpl implements SysUserService{
 					userid, role);
 			sysUserRoleMapper.insert(sysUserRole);
 		}
+		
 		//修改基本信息
 		sysUserMapper.updateByPrimaryKey(sysUser);
 	}

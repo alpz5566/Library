@@ -59,8 +59,10 @@ public class SysUserController {
 		setCommonData(model);
 		SysUser sysUser = sysUserService.findUserById(id);
 		//准备角色回显数据
+		List<String> rolesname = sysUserService.findRolesByUserid(sysUser.getId());
 		List<String> roles = sysUserService.selectRoleIdByUserid(sysUser.getId());
 		sysUser.setRoleIds(roles);
+		sysUser.setRoleListStr(rolesname);
 		System.out.println(roles);
 		model.addAttribute("sysuser",sysUser);
 		model.addAttribute("op", "修改");
@@ -73,7 +75,7 @@ public class SysUserController {
 		System.out.println(sysUser.getId());
 		System.out.println(sysUser.getLocked());
 		System.out.println("权限集合字符串："+sysUser.getRoleListStr());		
-		System.out.println("权限集合"+sysUser.getRoles());
+		System.out.println("权限集合"+sysUser.getRoleIds());
 		
 		sysUserService.updateEntity(sysUser);
 		return "redirect:/sysuser/userlist";

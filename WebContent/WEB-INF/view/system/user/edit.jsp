@@ -391,7 +391,9 @@
 								        <form:hidden path="salt"/>
 								        <form:hidden path="usercode"/>
 								        <form:hidden path="locked"/>
-								
+										
+										<form:hidden path="roleListStr" />
+									
 								        <c:if test="${op ne '新增'}">
 								            <form:hidden path="password"/>
 								        </c:if>
@@ -400,6 +402,11 @@
 								            <form:label path="username">用户名：</form:label>
 								            <form:input path="username"/>
 								        </div>		
+								        
+								        <div class="form-group">
+								            <form:label path="roleListStr">角色名称：</form:label>
+								            <form:input path="roleListStr"/>
+								        </div>	
 								        							
 
 										<c:if test="${op eq '新增'}">

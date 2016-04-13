@@ -37,6 +37,5 @@ public interface SysUserService {
 
 	List<String> findRolesByUserid(String id);
 
-	List<String> selectRoleIdByUserid(String id);
-	    
+	List<String> selectRoleIdByUserid(String id);	    
 }
