@@ -37,10 +37,11 @@ public class SysUserController {
 			ServletRequest request,PageForm pageForm,Model model){
 		List<SysUser> users = sysUserService.findAllUser(pageForm.toPageBounds());
 		List<SysUser> users1 = sysUserService.findAllUser();
-		List<ActiveUser> activeUsers = null;
+//		List<ActiveUser> activeUsers = null;
 		for(SysUser user : users1){
 			//查询用户所属角色
-//			List<String> roles = sysUserService.findRolesByUserid(user.getId());
+			List<String> roles = sysUserService.findRolesByUserid(user.getId());
+			System.out.println(roles);
 		}
 		model.addAttribute("users", users1);
 		return "system/user/list2";
@@ -52,7 +53,7 @@ public class SysUserController {
 		return "redirect:/sysuser/userlist";
 	}
 	
-	@RequestMapping(value="/editpage")
+	@RequestMapping(value="/update",method={RequestMethod.GET})
 	public String toUpdatePage(@RequestParam(required = false)String id
 			,Model model){
 		setCommonData(model);
@@ -64,6 +65,9 @@ public class SysUserController {
 	
 	@RequestMapping(value="/update",method={RequestMethod.POST})
 	public String updateSysUser(SysUser sysUser,Model model){
+		System.out.println(sysUser.getUsername());
+		System.out.println(sysUser.getId());
+		
 		sysUserService.updateEntity(sysUser);
 		return "redirect:/sysuser/userlist";
 	}

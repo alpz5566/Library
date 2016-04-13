@@ -7,7 +7,9 @@ import org.junit.Test;
 import org.mybatis.generator.codegen.ibatis2.dao.elements.UpdateByExampleParmsInnerclassGenerator;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.book.library.mapper.SysRoleMapper;
 import com.book.library.mapper.SysUserMapper;
+import com.book.library.po.SysRole;
 import com.book.library.po.SysUser;
 import com.book.library.po.SysUserExample;
 
@@ -24,6 +26,15 @@ public class MapperTest {
 	private SysUserMapper mapper;
 	
 	private SysUserMapper sysUserMapper;
+	
+	private SysRoleMapper sysRoleMapper;
+	
+	
+	@Test
+	public void testFindRoleByUserid(){
+		List<String> roles = sysUserMapper.selectRoleByUserid("zhangsan");
+		System.out.println(roles);
+	}
 	
 	@Test
 	public void findById(){

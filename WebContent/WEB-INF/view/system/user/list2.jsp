@@ -378,13 +378,18 @@
 	                                        <tr class="odd gradeX">
 	                                            <td>${user.id}</td>
 	                                            <td>${user.username}</td>
-	                                            <td class="center">sj</td>
+	                                            <td class="center">js</td>
 	                                            <%-- <td class="center">${user.locked}</td> --%>
-	                                            <td class="center">${user.locked}</td>
+	                                            <td class="center">
+	                                            	<%-- <c:if test="${user.locked} == '0' ">
+	                                            		激活	
+	                                            	</c:if> --%>
+	                                            	${user.locked}
+												</td>
 	                                            
 	                                            <td class="center">
-	                                            	<button onclick="updateSysUser(${user.id})" data-brackets-id="250" type="button" class="btn btn-warning">修改</button>
-	                                            	<button onclick="deleteSysUser(${user.id});" data-brackets-id="251" type="button" class="btn btn-danger">删除</button>
+	                                            	<button onclick="updateSysUser('${user.id}');" data-brackets-id="250" type="button" class="btn btn-warning">修改</button>
+	                                            	<button onclick="deleteSysUser('${user.id}');" data-brackets-id="251" type="button" class="btn btn-danger">删除</button>
 	                                            </td>
 	                                        </tr>                                    		
                                     	</c:forEach>
@@ -441,7 +446,7 @@
 		
 		//修改用户
 		function updateSysUser(userid){
-			location.href = '${ctx}/sysuser/editpage?id=' + userid;
+			location.href = '${ctx}/sysuser/update?id=' + userid;
 		}
 		
 		$(document).ready(function() {

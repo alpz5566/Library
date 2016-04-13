@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.book.library.mapper.SysUserMapper;
 import com.book.library.mapper.SysUserRoleMapper;
+import com.book.library.po.SysRole;
 import com.book.library.po.SysUser;
 import com.book.library.po.SysUserExample;
 import com.book.library.po.SysUserRole;
@@ -134,6 +135,13 @@ public class SysUserServiceImpl implements SysUserService{
 //		SysUserExample example = new SysUserExample();
 //		SysUserExample.Criteria criteria = example.createCriteria();
 		sysUserMapper.updateByPrimaryKey(sysUser);
+	}
+
+	//根据用户id查询所属角色，多对多
+	@Override
+	public List<String> findRolesByUserid(String id) {
+		List<String> roles = sysUserMapper.selectRoleByUserid(id);
+		return roles;
 	}
 
 	

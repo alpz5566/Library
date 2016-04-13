@@ -178,4 +178,15 @@
       available = #{available,jdbcType=CHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
+  
+  <select id="selectRoleByUserid" resultMap="BaseResultMap" parameterType="java.lang.String">
+  	select 
+  	<include refid="Base_Column_List" />
+	from sys_role 
+	where id in (
+		select sys_role_id 
+		from sys_user_role 
+	    where sys_user_id = #{id,jdbcType=VARCHAR})
+  </select>
+  
 </mapper>

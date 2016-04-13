@@ -400,9 +400,15 @@
 								        </div>								
 
 								
-								        <div class="form-group">
+								        <%-- <div class="form-group">
 								            <form:label path="roleIds">角色列表：</form:label>
 								            <form:select path="roleIds" items="${roleList}" itemLabel="name" itemValue="id" multiple="true"/>
+								            (按住shift键多选)
+								        </div> --%>
+								        
+								        <div class="form-group">
+								            <form:label path="roles">角色列表：</form:label>
+								            <form:select path="roles" items="${roleList}" itemLabel="name" itemValue="id" multiple="true"/>
 								            (按住shift键多选)
 								        </div>
 								
@@ -410,10 +416,10 @@
 								
 								    </form:form>
                                     
-                                    
+                                    <%-- 
                                     <div id="error" class="error">${error}</div>
 	                                <button onclick="updatePassword();" type="button" class="btn btn-success">修改</button>
-	                                <button type="reset" name="button" class="btn btn-warning">重置</button>
+	                                <button type="reset" name="button" class="btn btn-warning">重置</button> --%>
 	                                
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->

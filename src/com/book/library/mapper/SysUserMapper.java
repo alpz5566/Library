@@ -1,5 +1,6 @@
 package com.book.library.mapper;
 
+import com.book.library.po.SysRole;
 import com.book.library.po.SysUser;
 import com.book.library.po.SysUserExample;
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
@@ -35,6 +36,8 @@ public interface SysUserMapper {
 	List<SysUser> findAllUser(PageBounds pageBounds);
 
 	void updatePassword(String id, String newpassword);
+
+	List<String> selectRoleByUserid(String id);
     
     
 }

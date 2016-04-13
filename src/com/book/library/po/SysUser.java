@@ -1,5 +1,6 @@
 package com.book.library.po;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SysUser {
@@ -15,7 +16,7 @@ public class SysUser {
 
     private String locked;
     
-    private List<String> roleIds; //拥有的角色列表
+    private List<SysRole> roles; //拥有的角色列表
 
     public String getId() {
         return id;
@@ -86,14 +87,15 @@ public class SysUser {
 		this.password = password;
 	}
 
-	public List<String> getRoleIds() {
-		return roleIds;
+	public List<SysRole> getRoles() {
+		return roles;
 	}
 
-	public void setRoleIds(List<String> roleIds) {
-		this.roleIds = roleIds;
+	public void setRoles(List<SysRole> roles) {
+		this.roles = roles;
 	}
 
+	
 	
 	
     
