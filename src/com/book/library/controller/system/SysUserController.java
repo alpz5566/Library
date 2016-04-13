@@ -41,7 +41,7 @@ public class SysUserController {
 		for(SysUser user : users1){
 			//查询用户所属角色
 			List<String> roles = sysUserService.findRolesByUserid(user.getId());
-			System.out.println(roles);
+			user.setRoleListStr(roles);
 		}
 		model.addAttribute("users", users1);
 		return "system/user/list2";
@@ -67,6 +67,8 @@ public class SysUserController {
 	public String updateSysUser(SysUser sysUser,Model model){
 		System.out.println(sysUser.getUsername());
 		System.out.println(sysUser.getId());
+		System.out.println(sysUser.getLocked());
+		System.out.println(sysUser.getRoleListStr());
 		
 		sysUserService.updateEntity(sysUser);
 		return "redirect:/sysuser/userlist";

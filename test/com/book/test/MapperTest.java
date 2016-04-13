@@ -37,6 +37,12 @@ public class MapperTest {
 	}
 	
 	@Test
+	public void updateSysUser(){
+		SysUser sysUser = new SysUser("2", "sa", "duoshao", "ssss", "s", 1);
+		sysUserMapper.updateByPrimaryKey(sysUser);
+	}
+	
+	@Test
 	public void findById(){
 		 SysUserExample example = new SysUserExample();
 		 SysUserExample.Criteria criteria = example.createCriteria();
@@ -53,7 +59,7 @@ public class MapperTest {
 		record.setUsername("long");
 		record.setPassword("123");
 		record.setUsercode("4");
-		record.setLocked("1");
+		record.setLocked(1);
 		sysUserMapper.insert(record);
 		
 	}
@@ -71,7 +77,7 @@ public class MapperTest {
 		SysUserExample example = new SysUserExample();
 		SysUserExample.Criteria criteria = example.createCriteria();
 		criteria.andIdEqualTo("3");
-		SysUser record = new SysUser("3", "admin", "long", "long", "1", "1");
+		SysUser record = new SysUser("3", "admin", "long", "long", "1", 1);
 		sysUserMapper.updateByExample(record, example);
 
 	}

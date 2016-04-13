@@ -378,7 +378,7 @@
 	                                        <tr class="odd gradeX">
 	                                            <td>${user.id}</td>
 	                                            <td>${user.username}</td>
-	                                            <td class="center">js</td>
+	                                            <td class="center">${user.roleListStr}</td>
 	                                            <%-- <td class="center">${user.locked}</td> --%>
 	                                            <td class="center">
 	                                            	<%-- <c:if test="${user.locked} == '0' ">

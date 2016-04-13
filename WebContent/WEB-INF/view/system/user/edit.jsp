@@ -5,7 +5,7 @@
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="en">
+<html>
 
 <head>
 
@@ -386,8 +386,10 @@
                                     </form> --%>
                                     
                                     <form:form method="post" commandName="sysuser">
-								        <form:hidden path="id"/>
+								        <%-- <form:hidden path="id"/> --%>
+								        							
 								        <form:hidden path="salt"/>
+								        <form:hidden path="usercode"/>
 								        <form:hidden path="locked"/>
 								
 								        <c:if test="${op ne '新增'}">
@@ -399,6 +401,12 @@
 								            <form:input path="username"/>
 								        </div>								
 
+										<c:if test="${op eq '新增'}">
+								            <div class="form-group">
+								                <form:label path="password">密码：</form:label>
+								                <form:password path="password"/>
+								            </div>
+								        </c:if>
 								
 								        <%-- <div class="form-group">
 								            <form:label path="roleIds">角色列表：</form:label>

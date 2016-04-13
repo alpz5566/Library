@@ -1,10 +1,16 @@
 package com.book.library.po;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.List;
 
-public class SysUser {
-    private String id;
+public class SysUser implements Serializable{
+	
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -7459728688662264984L;
+
+	private String id;
 
     private String usercode;
 
@@ -14,9 +20,11 @@ public class SysUser {
 
     private String salt;
 
-    private String locked;
+    private int locked;
     
     private List<SysRole> roles; //拥有的角色列表
+    
+    private List<String> roleListStr;
 
     public String getId() {
         return id;
@@ -58,16 +66,16 @@ public class SysUser {
         this.salt = salt == null ? null : salt.trim();
     }
 
-    public String getLocked() {
+    public int getLocked() {
         return locked;
     }
 
-    public void setLocked(String locked) {
-        this.locked = locked == null ? null : locked.trim();
+    public void setLocked(int locked) {
+        this.locked = locked;
     }
 
 	public SysUser(String id, String usercode, String username,
-			String password, String salt, String locked) {
+			String password, String salt, int locked) {
 		super();
 		this.id = id;
 		this.usercode = usercode;
@@ -93,6 +101,14 @@ public class SysUser {
 
 	public void setRoles(List<SysRole> roles) {
 		this.roles = roles;
+	}
+
+	public List<String> getRoleListStr() {
+		return roleListStr;
+	}
+
+	public void setRoleListStr(List<String> roleListStr) {
+		this.roleListStr = roleListStr;
 	}
 
 	

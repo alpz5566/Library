@@ -1,6 +1,5 @@
 package com.book.library.mapper;
 
-import com.book.library.po.SysRole;
 import com.book.library.po.SysUser;
 import com.book.library.po.SysUserExample;
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;

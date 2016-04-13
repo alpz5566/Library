@@ -62,7 +62,6 @@ public class SysUserServiceImpl implements SysUserService{
 		recode.setUsername("admins");
 		recode.setPassword("123");
 		recode.setSalt("456");
-		recode.setLocked("0");
 		sysUserMapper.insert(recode);
 	}
 
@@ -79,7 +78,7 @@ public class SysUserServiceImpl implements SysUserService{
 		SysUserExample example = new SysUserExample();
 		SysUserExample.Criteria criteria = example.createCriteria();
 		criteria.andIdEqualTo("3");
-		SysUser recode = new SysUser("adnmin", "admin", "long", "long", null, "1");
+		SysUser recode = new SysUser("adnmin", "admin", "long", "long", null, 1);
 		sysUserMapper.updateByExample(recode, example);
 		
 	}
@@ -132,8 +131,6 @@ public class SysUserServiceImpl implements SysUserService{
 
 	@Override
 	public void updateEntity(SysUser sysUser) {
-//		SysUserExample example = new SysUserExample();
-//		SysUserExample.Criteria criteria = example.createCriteria();
 		sysUserMapper.updateByPrimaryKey(sysUser);
 	}
 
