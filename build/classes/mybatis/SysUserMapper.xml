@@ -236,9 +236,18 @@
   	select * from sys_user
   </select>
   
-  <!-- 根据userid查询出角色列表 -->
+  <!-- 根据userid查询出角色名字列表 -->
   <select id="selectRoleByUserid" resultType="java.lang.String" parameterType="java.lang.String">
   	select name
+	from sys_role 
+	where id in (select sys_role_id 
+		from sys_user_role 
+	    where sys_user_id = #{0,jdbcType=VARCHAR})
+  </select>
+  
+  <!-- 根据userid查询出角色id列表 -->
+  <select id="selectRoleIdByUserid" resultType="java.lang.String" parameterType="java.lang.String">
+  	select id
 	from sys_role 
 	where id in (select sys_role_id 
 		from sys_user_role 

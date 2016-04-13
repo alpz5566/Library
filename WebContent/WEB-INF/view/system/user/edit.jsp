@@ -399,7 +399,8 @@
 								        <div class="form-group">
 								            <form:label path="username">用户名：</form:label>
 								            <form:input path="username"/>
-								        </div>								
+								        </div>		
+								        							
 
 										<c:if test="${op eq '新增'}">
 								            <div class="form-group">
@@ -415,8 +416,8 @@
 								        </div> --%>
 								        
 								        <div class="form-group">
-								            <form:label path="roleListStr">角色列表：</form:label>
-								            <form:select path="roleListStr" items="${roleList}" itemLabel="name" itemValue="id" multiple="true"/>
+								            <form:label path="roleIds">角色列表：</form:label>
+								            <form:select path="roleIds" items="${roleList}" itemLabel="name" itemValue="id" multiple="true"/>
 								            (按住shift键多选)
 								        </div>
 								

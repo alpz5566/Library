@@ -58,6 +58,10 @@ public class SysUserController {
 			,Model model){
 		setCommonData(model);
 		SysUser sysUser = sysUserService.findUserById(id);
+		//准备角色回显数据
+		List<String> roles = sysUserService.selectRoleIdByUserid(sysUser.getId());
+		sysUser.setRoleIds(roles);
+		System.out.println(roles);
 		model.addAttribute("sysuser",sysUser);
 		model.addAttribute("op", "修改");
 		return "system/user/edit";

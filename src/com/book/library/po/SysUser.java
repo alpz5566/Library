@@ -24,7 +24,9 @@ public class SysUser implements Serializable{
     
     private List<SysRole> roles; //拥有的角色列表
     
-    private List<String> roleListStr;
+    private List<String> roleListStr; //角色名字
+    
+    private List<String> roleIds; //角色id
 
     public String getId() {
         return id;
@@ -109,6 +111,14 @@ public class SysUser implements Serializable{
 
 	public void setRoleListStr(List<String> roleListStr) {
 		this.roleListStr = roleListStr;
+	}
+
+	public List<String> getRoleIds() {
+		return roleIds;
+	}
+
+	public void setRoleIds(List<String> roleIds) {
+		this.roleIds = roleIds;
 	}
 
 	

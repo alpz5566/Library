@@ -137,7 +137,7 @@ public class SysUserServiceImpl implements SysUserService{
 		//获取roleid集合
 		List<String> roles = sysUser.getRoleListStr();
 		String userid = sysUser.getId();
-		if(roles.size() != 0){
+		if(roles.size() != 0 && roles != null){
 			//如果存在角色，先删除，再添加
 			SysUserRoleExample example = new SysUserRoleExample();
 			SysUserRoleExample.Criteria criteria = example.createCriteria();
@@ -155,10 +155,17 @@ public class SysUserServiceImpl implements SysUserService{
 		sysUserMapper.updateByPrimaryKey(sysUser);
 	}
 
-	//根据用户id查询所属角色，多对多
+	//根据用户id查询所属角色名称，多对多
 	@Override
 	public List<String> findRolesByUserid(String id) {
 		List<String> roles = sysUserMapper.selectRoleByUserid(id);
+		return roles;
+	}
+
+	//根据用户id查询所属角色id，多对多
+	@Override
+	public List<String> selectRoleIdByUserid(String id) {
+		List<String> roles = sysUserMapper.selectRoleIdByUserid(id);
 		return roles;
 	}
 

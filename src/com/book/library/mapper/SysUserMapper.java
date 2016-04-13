@@ -42,6 +42,8 @@ public interface SysUserMapper {
 
 	//添加sys_user_role
 	void setConnUserRole(UUID uuid,String userid, String role);
+
+	List<String> selectRoleIdByUserid(String id);
     
     
 }

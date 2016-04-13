@@ -36,5 +36,7 @@ public interface SysUserService {
 	void updateEntity(SysUser sysUser);
 
 	List<String> findRolesByUserid(String id);
+
+	List<String> selectRoleIdByUserid(String id);
 	    
 }
