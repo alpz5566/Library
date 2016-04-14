@@ -391,12 +391,12 @@
 			                <td>
 			                    <%-- <shiro:hasPermission name="permission:create"> --%>
 			                        <c:if test="${permission.type ne 'permission'}">
-			                        <a href="${pageContext.request.contextPath}/permission/${permission.id}/appendChild">添加子节点</a>
+			                        <a href="${ctx}/syspermission/${permission.id}/appendChild">添加子节点</a>
 			                        </c:if>
 			                    <%-- </shiro:hasPermission> --%>
 			
 			                    <%-- <shiro:hasPermission name="permission:update"> --%>
-			                        <a href="${pageContext.request.contextPath}/permission/${permission.id}/update">修改</a>
+			                        <a href="${ctx}/syspermission/${permission.id}/update">修改</a>
 			                    <%-- </shiro:hasPermission> --%>
 			                    
 			                    <c:if test="${not permission.rootNode}">
@@ -440,7 +440,7 @@
 	        $("#table").treetable({ expandable: true }).treetable("expandNode", 1);
 	        $(".deleteBtn").click(function() {
 	            if(confirm("确认删除吗?")) {
-	                location.href = "${pageContext.request.contextPath}/permission/"+$(this).data("id")+"/delete";
+	                location.href = "${ctx}/syspermission/"+$(this).data("id")+"/delete";
 	            }
 	        });
 	    });
@@ -453,25 +453,6 @@
 				location.href = '${ctx}/logout.action';
 			}
 		}
-		/* 
-		//删除用户
-		function deleteSysUser(userid){
-			var r = confirm("您确定要删除该用户嘛，删除后用户所属权限随即删除！")
-			if(r){
-				location.href = '${ctx}/sysuser/delete?id=' + userid;
-			}
-		}
-		
-		//修改用户
-		function updateSysUser(userid){
-			location.href = '${ctx}/sysuser/update?id=' + userid;
-		}
-		
-		$(document).ready(function() {
-	        $('#dataTables-example').DataTable({
-	                responsive: true
-	        });
-	    }); */
 	</script>
 </body>
 

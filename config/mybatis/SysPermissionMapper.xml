@@ -283,4 +283,9 @@
 	from sys_role_permission 
 	where sys_role_id = #{roleid,jdbcType=VARCHAR})
   </select>
+  
+  <select id="findAllType" resultType="java.lang.String">
+  	select distinct type from sys_permission
+  </select>
+  
 </mapper>

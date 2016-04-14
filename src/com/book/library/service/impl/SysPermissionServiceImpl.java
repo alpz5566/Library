@@ -38,4 +38,25 @@ public class SysPermissionServiceImpl implements SysPermissionService{
 		return sysPermission;
 	}
 
+	@Override
+	public void create(SysPermission sysPermission) {
+		permissionMapper.insert(sysPermission);
+	}
+
+	@Override
+	public void updatePermission(SysPermission sysPermission) {
+		permissionMapper.updateByPrimaryKey(sysPermission);
+	}
+
+	@Override
+	public void deletePermission(Long id) {
+		permissionMapper.deleteByPrimaryKey(id);
+	}
+
+	@Override
+	public List<String> findAllType() {
+		List<String> types = permissionMapper.findAllType();
+		return types;
+	}
+
 }

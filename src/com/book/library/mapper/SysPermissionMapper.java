@@ -29,4 +29,6 @@ public interface SysPermissionMapper {
     int updateByPrimaryKey(SysPermission record);
 
 	List<SysPermission> selectPermissionByRoleId(String id);
+
+	List<String> findAllType();
 }

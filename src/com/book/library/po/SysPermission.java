@@ -40,6 +40,10 @@ public class SysPermission implements Serializable{
         }
     }
     
+    public String makeSelfAsParentIds() {
+        return getParentids() + getId() + "/";
+    }
+    
     public boolean isRootNode() {
         return parentid == 0;
     }

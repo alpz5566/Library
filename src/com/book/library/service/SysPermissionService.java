@@ -12,4 +12,12 @@ public interface SysPermissionService {
 
 	SysPermission findByPermissionId(Long permissionId);
 
+	void create(SysPermission sysPermission);
+
+	void updatePermission(SysPermission sysPermission);
+
+	void deletePermission(Long id);
+
+	List<String> findAllType();
+
 }
