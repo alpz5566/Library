@@ -11,7 +11,9 @@ public class SysPermission implements Serializable{
     private String name;
 
     private String type;
-
+    
+//    private permissionType type = permissionType.menu;
+    
     private String url;
 
     private String percode;
@@ -23,6 +25,24 @@ public class SysPermission implements Serializable{
     private String sortstring;
 
     private String available;
+    
+//    type设为枚举类型
+    public static enum permissionType {
+        menu("菜单"), permission("按钮");
+
+        private final String info;
+        private permissionType(String info) {
+            this.info = info;
+        }
+
+        public String getInfo() {
+            return info;
+        }
+    }
+    
+    public boolean isRootNode() {
+        return parentid == 0;
+    }
 
     public Long getId() {
         return id;
@@ -40,19 +60,29 @@ public class SysPermission implements Serializable{
         this.name = name == null ? null : name.trim();
     }
 
-    public String getType() {
-        return type;
-    }
+//    public permissionType getType() {
+//		return type;
+//	}
+//
+//	public void setType(permissionType type) {
+//		this.type = type;
+//	}
+    
+    
 
-    public void setType(String type) {
-        this.type = type == null ? null : type.trim();
-    }
-
-    public String getUrl() {
+	public String getUrl() {
         return url;
     }
 
-    public void setUrl(String url) {
+    public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public void setUrl(String url) {
         this.url = url == null ? null : url.trim();
     }
 
