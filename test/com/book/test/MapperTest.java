@@ -13,6 +13,7 @@ import com.book.library.mapper.SysUserMapper;
 import com.book.library.po.SysRole;
 import com.book.library.po.SysUser;
 import com.book.library.po.SysUserExample;
+import com.book.library.service.SysRoleService;
 
 public class MapperTest {
 	
@@ -22,6 +23,7 @@ public class MapperTest {
 	public void setUp() throws Exception {
 		applicationContext = new ClassPathXmlApplicationContext("classpath:spring/applicationContext-dao.xml");
 		sysUserMapper = (SysUserMapper) applicationContext.getBean("sysUserMapper");
+		sysRoleMapper = (SysRoleMapper)applicationContext.getBean("sysRoleMapper");
 	}
 	
 	private SysUserMapper mapper;
@@ -29,6 +31,22 @@ public class MapperTest {
 	private SysUserMapper sysUserMapper;
 	
 	private SysRoleMapper sysRoleMapper;
+	
+	
+	
+	@Test
+	public void findRoleByIdForMapper(){
+		String id = "ebc9d647-c6f9-11e4-b137-0adc305c";
+		SysRole sysRole = sysRoleMapper.selectByPrimaryKey("dsjii343");
+		System.out.println(sysRole);
+	}
+	
+//	@Test
+//	public void findRoleByIdForService(){
+//		String id = "ebc9d647-c6f9-11e4-b137-0adc305c";
+//		SysRole sysRole = sysRoleService.findRoleById(id);
+//		System.out.println(sysRole);
+//	}
 	
 	@Test
 	public void testListToSplit(){

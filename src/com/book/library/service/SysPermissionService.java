@@ -8,4 +8,8 @@ public interface SysPermissionService {
 
 	List<SysPermission> selectPermissionByRoleId(String id);
 
+	List<SysPermission> findAll();
+
+	SysPermission findByPermissionId(Long permissionId);
+
 }

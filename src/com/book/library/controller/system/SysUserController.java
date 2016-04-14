@@ -48,13 +48,13 @@ public class SysUserController {
 	}
 	
 	@RequestMapping(value="/delete")
-	public String  deleteSysUser(@RequestParam(required = false)String id){
+	public String  deleteSysUser(@RequestParam(required = true)String id){
 		sysUserService.deleteUserById(id);
 		return "redirect:/sysuser/userlist";
 	}
 	
 	@RequestMapping(value="/update",method={RequestMethod.GET})
-	public String toUpdatePage(@RequestParam(required = false)String id
+	public String toUpdatePage(@RequestParam(required = true)String id
 			,Model model){
 		setCommonData(model);
 		SysUser sysUser = sysUserService.findUserById(id);

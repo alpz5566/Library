@@ -15,7 +15,7 @@ public class SysRole implements Serializable{
 
     private List<String> permissionListStr;
     
-    private List<String> permissionIds;
+    private List<Long> permissionIds;
     
     public String getId() {
         return id;
@@ -49,13 +49,15 @@ public class SysRole implements Serializable{
 		this.permissionListStr = permissionListStr;
 	}
 
-	public List<String> getPermissionIds() {
+	public List<Long> getPermissionIds() {
 		return permissionIds;
 	}
 
-	public void setPermissionIds(List<String> permissionIds) {
+	public void setPermissionIds(List<Long> permissionIds) {
 		this.permissionIds = permissionIds;
 	}
+
+
 
 	
     

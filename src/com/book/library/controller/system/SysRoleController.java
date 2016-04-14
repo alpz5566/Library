@@ -3,11 +3,15 @@ package com.book.library.controller.system;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.management.relation.Role;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.book.library.po.SysPermission;
 import com.book.library.po.SysRole;
@@ -23,6 +27,12 @@ public class SysRoleController {
 	
 	@Autowired
 	private SysPermissionService permissionService;
+	
+	@SuppressWarnings("unused")
+	private void setCommonData(Model model) {
+		List<SysPermission> permissions = permissionService.findAll();
+        model.addAttribute("permissionList", permissions);
+    }
 	
 	@RequestMapping(value="/rolelist",method={RequestMethod.GET})
 	public String findAllRoles(Model model){
@@ -48,10 +58,58 @@ public class SysRoleController {
 		return "system/role/list";
 	}
 	
-	@RequestMapping(value="")
-	public String toSaveRolePage(){
-		return "";
+	@RequestMapping(value="save",method={RequestMethod.GET})
+	public String toSaveRolePage(Model model){
+		setCommonData(model);
+		model.addAttribute("role", new SysRole());
+		model.addAttribute("op", "新增");
+		return "system/role/edit";
 	}
 	
+	@RequestMapping(value="save",method={RequestMethod.POST})
+	public String saveRole(SysRole role ,Model model,RedirectAttributes redirectAttributes){
+		roleService.save(role);
+		redirectAttributes.addFlashAttribute("msg", "新增成功");
+		return "redirect:sysrole/rolelist";
+	}
+	
+	@RequestMapping(value="update",method={RequestMethod.GET})
+	public String toUpdatePage(@RequestParam(required = true)String id
+			,Model model){
+		setCommonData(model);
+		//准备修改回显的基本数据
+		SysRole role = roleService.findRoleById(id);
+		
+		//准备修改回显的权限信息数据
+		List<SysPermission> permissions = new ArrayList<SysPermission>();
+		List<String> permissionListStr = new ArrayList<String>();
+		List<Long> permissionIds = new ArrayList<Long>();
+		permissions = permissionService.selectPermissionByRoleId(role.getId());
+		if(permissions.size() != 0){
+			for(int i = 0;i < permissions.size();i++){
+				permissionIds.add(permissions.get(i).getId());
+			}
+			role.setPermissionIds(permissionIds);
+		}
+
+		model.addAttribute("role", role);
+		model.addAttribute("op", "修改");
+		return "system/role/edit";
+	}
+	
+	@RequestMapping(value="update",method={RequestMethod.POST})
+	public String updateRole(RedirectAttributes redirectAttributes,SysRole sysRole){
+		roleService.updateEntity(sysRole);
+		redirectAttributes.addFlashAttribute("msg", "修改成功");
+		return "redirect:sysrole/rolelist";
+	}
+	
+	@RequestMapping(value="delete",method={RequestMethod.GET})
+	public String deleteRole(@RequestParam(required = true)String id,
+			RedirectAttributes redirectAttributes){
+		roleService.deleteRole(id);
+		redirectAttributes.addFlashAttribute("msg", "删除成功");
+		return "redirect:sysrole/rolelist";
+	}
 	
 }

@@ -2,8 +2,11 @@ package com.book.library.service.impl;
 
 import java.util.List;
 
+import javax.management.relation.Role;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.book.library.mapper.SysRoleMapper;
@@ -36,6 +39,27 @@ public class SysRoleServiceImpl implements SysRoleService{
 		SysRoleExample.Criteria criteria = example.createCriteria();
 		List<SysRole> roles = sysRoleMapper.selectByExample(example);
 		return roles;
+	}
+
+	@Override
+	public void save(SysRole role) {
+		sysRoleMapper.insert(role);
+	}
+
+	@Override
+	public SysRole findRoleById(String id) {
+		SysRole sysRole = sysRoleMapper.selectByPrimaryKey(id);
+		return sysRole;
+	}
+
+	@Override
+	public void updateEntity(SysRole sysRole) {
+		sysRoleMapper.updateByPrimaryKey(sysRole);
+	}
+
+	@Override
+	public void deleteRole(String id) {
+		sysRoleMapper.deleteByPrimaryKey(id);
 	}
 
 }
