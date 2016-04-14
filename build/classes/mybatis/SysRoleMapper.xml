@@ -189,4 +189,5 @@
 	    where sys_user_id = #{id,jdbcType=VARCHAR})
   </select>
   
+  
 </mapper>

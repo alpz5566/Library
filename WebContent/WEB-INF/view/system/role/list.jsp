@@ -358,7 +358,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            用户列表
+                            角色列表
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -366,28 +366,27 @@
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
-                                            <th>用户id</th>
-                                            <th>用户名</th>
-                                            <th>用户角色</th>
-                                            <th>是否锁定</th>
+                                            <th>角色名</th>
+                                            <th>是否可用</th>
+                                            <th>拥有权限</th>
                                             <th>操作</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    	<c:forEach items="${users}" var="user">
+                                    	<c:forEach items="${roleList}" var="role">
 	                                        <tr class="odd gradeX">
-	                                            <td>${user.id}</td>
-	                                            <td>${user.username}</td>
-	                                            <td class="center">${user.roleListStr}</td>
+	                                            <td>${role.name}</td>
+	                                            <td>${role.available}</td>
+	                                            <td class="center">${role.permissionListStr}</td>
 	                                            <%-- <td class="center">${user.locked}</td> --%>
-	                                            <td>
+	                                            <%-- <td>
 	                                            	<c:if test="${user.locked == 0 }">未锁定</c:if>
 	                                            	<c:if test="${user.locked == 1 }">锁定</c:if>
-												</td>
+												</td> --%>
 	                                            
 	                                            <td class="center">
-	                                            	<button onclick="updateSysUser('${user.id}');" data-brackets-id="250" type="button" class="btn btn-warning">修改</button>
-	                                            	<button onclick="deleteSysUser('${user.id}');" data-brackets-id="251" type="button" class="btn btn-danger">删除</button>
+	                                            	<button onclick="updateSysRole('${role.id}');" data-brackets-id="250" type="button" class="btn btn-warning">修改</button>
+	                                            	<button onclick="deleteSysRole('${role.id}');" data-brackets-id="251" type="button" class="btn btn-danger">删除</button>
 	                                            </td>
 	                                        </tr>                                    		
                                     	</c:forEach>
@@ -434,17 +433,17 @@
 			}
 		}
 		
-		//删除用户
-		function deleteSysUser(userid){
+		//删除角色
+		function deleteSysRole(roleid){
 			var r = confirm("您确定要删除该用户嘛，删除后用户所属权限随即删除！")
 			if(r){
-				location.href = '${ctx}/sysuser/delete?id=' + userid;
+				location.href = '${ctx}/sysrole/delete?id=' + userid;
 			}
 		}
 		
-		//修改用户
-		function updateSysUser(userid){
-			location.href = '${ctx}/sysuser/update?id=' + userid;
+		//修改角色
+		function updateSysRole(roleid){
+			location.href = '${ctx}/sysrole/update?id=' + roleid;
 		}
 		
 		$(document).ready(function() {

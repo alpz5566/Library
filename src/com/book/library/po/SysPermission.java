@@ -1,7 +1,12 @@
 package com.book.library.po;
 
-public class SysPermission {
-    private Long id;
+import java.io.Serializable;
+
+public class SysPermission implements Serializable{
+	
+	private static final long serialVersionUID = 3727207904451843541L;
+
+	private Long id;
 
     private String name;
 

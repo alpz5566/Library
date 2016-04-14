@@ -1,15 +1,21 @@
 package com.book.library.po;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class SysRole {
-    private String id;
+public class SysRole implements Serializable{
+	
+	private static final long serialVersionUID = -6120905474716069753L;
+
+	private String id;
 
     private String name;
 
     private String available;
 
-    private List<String> permissions;
+    private List<String> permissionListStr;
+    
+    private List<String> permissionIds;
     
     public String getId() {
         return id;
@@ -35,12 +41,22 @@ public class SysRole {
         this.available = available == null ? null : available.trim();
     }
 
-	public List<String> getPermissions() {
-		return permissions;
+	public List<String> getPermissionListStr() {
+		return permissionListStr;
 	}
 
-	public void setPermissions(List<String> permissions) {
-		this.permissions = permissions;
+	public void setPermissionListStr(List<String> permissionListStr) {
+		this.permissionListStr = permissionListStr;
 	}
+
+	public List<String> getPermissionIds() {
+		return permissionIds;
+	}
+
+	public void setPermissionIds(List<String> permissionIds) {
+		this.permissionIds = permissionIds;
+	}
+
+	
     
 }

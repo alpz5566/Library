@@ -327,10 +327,10 @@
                                     <a href="${ctx}/sysuser/userlist.action">用户管理</a>
                                 </li>
                                 <li>
-                                    <a href="morris.html">角色管理</a>
+                                    <a href="${ctx}/sysrole/rolelist.action">角色管理</a>
                                 </li>
                                 <li>
-                                    <a href="morris.html">资源权限管理</a>
+                                    <a href="${ctx}/syspermission/permissionlist.action">资源权限管理</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

@@ -135,21 +135,25 @@ public class SysUserServiceImpl implements SysUserService{
 	public void updateEntity(SysUser sysUser) {
 		//先修改用户的角色信息（先删再插入）
 		//获取roleid集合	
-		List<String> roles = sysUser.getRoleIds();
-		String userid = sysUser.getId();
-		if(roles.size() != 0){
-			//如果存在角色，先删除，再添加
-			SysUserRoleExample example = new SysUserRoleExample();
-			SysUserRoleExample.Criteria criteria = example.createCriteria();
-			criteria.andSysUserIdEqualTo(userid);
-			sysUserRoleMapper.deleteByExample(example);		
-		}
-		for(String role:roles){
-			//生成uuid
-			UUID uuid = UUID.randomUUID();
-			SysUserRole sysUserRole = new SysUserRole(uuid.toString(),
-					userid, role);
-			sysUserRoleMapper.insert(sysUserRole);
+		try {
+			List<String> roles = sysUser.getRoleIds();
+			String userid = sysUser.getId();
+			if(roles.size() != 0){
+				//如果存在角色，先删除，再添加
+				SysUserRoleExample example = new SysUserRoleExample();
+				SysUserRoleExample.Criteria criteria = example.createCriteria();
+				criteria.andSysUserIdEqualTo(userid);
+				sysUserRoleMapper.deleteByExample(example);		
+			}
+			for(String role:roles){
+				//生成uuid
+				UUID uuid = UUID.randomUUID();
+				SysUserRole sysUserRole = new SysUserRole(uuid.toString(),
+						userid, role);
+				sysUserRoleMapper.insert(sysUserRole);
+			}
+		} catch (NullPointerException e) {
+			e.printStackTrace();
 		}
 		
 		//修改基本信息

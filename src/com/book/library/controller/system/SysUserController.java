@@ -73,7 +73,7 @@ public class SysUserController {
 	public String updateSysUser(SysUser sysUser,Model model){
 		System.out.println(sysUser.getUsername());
 		System.out.println(sysUser.getId());
-		System.out.println(sysUser.getLocked());
+		System.out.println("是否锁定"+sysUser.getLocked());
 		System.out.println("权限集合字符串："+sysUser.getRoleListStr());		
 		System.out.println("权限集合"+sysUser.getRoleIds());
 		
