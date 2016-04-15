@@ -85,7 +85,7 @@ public class SysUserController {
 	@RequestMapping(value="/save",method={RequestMethod.GET})
 	public String toSavePage(Model model){
 		setCommonData(model);
-		model.addAttribute("user", new SysUser());
+		model.addAttribute("sysuser", new SysUser());
 		model.addAttribute("op", "新增");
 		return "sysuser/user/edit";
 	}

@@ -6,6 +6,8 @@ import java.util.Map;
 import javax.servlet.ServletRequest;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.authz.annotation.RequiresRoles;
+import org.apache.shiro.authz.annotation.RequiresUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,7 +37,7 @@ public class TestAdmin {
 		return "test/test";
 	}
 	
-	@RequiresPermissions("item:query")
+	@RequiresPermissions("user:query")
 	@RequestMapping(value="/list")
 	@ResponseBody
 	public Map findAllUser(){

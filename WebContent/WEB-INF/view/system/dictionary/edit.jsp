@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
@@ -26,6 +27,13 @@
 
     <!-- Custom CSS -->
     <link href="${ctx}/sbadmin/sb-admin/dist/css/sb-admin-2.css" rel="stylesheet">
+    
+    <!-- DataTables CSS -->
+    <link href="${ctx}/sbadmin/sb-admin/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet">
+
+    <!-- DataTables Responsive CSS -->
+    <link href="${ctx}/sbadmin/sb-admin/bower_components/datatables-responsive/css/responsive.dataTables.scss" rel="stylesheet">
+    
 
     <!-- Morris Charts CSS -->
     <link href="${ctx}/sbadmin/sb-admin/bower_components/morrisjs/morris.css" rel="stylesheet">
@@ -350,7 +358,49 @@
 
 		<!-- 华丽丽分割线。。。。。 -->
         <div id="page-wrapper">
-        	主页面
+        		<div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            数据字典修改
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    
+                                    <form:form method="post" commandName="dictionary">
+								        <%-- <form:hidden path="id"/> --%>
+									
+								        <div class="form-group">
+								            <form:label path="type">类型：</form:label>
+								            <form:input path="type"/>
+								        </div>
+								        <div class="form-group">
+								            <form:label path="code">编码：</form:label>
+								            <form:input path="code"/>
+								        </div>
+								        <div class="form-group">
+								            <form:label path="name">名称：</form:label>
+								            <form:input path="name"/>
+								        </div>		
+
+								
+								        <form:button>${op}</form:button>
+								
+								    </form:form>
+                                </div>
+                                <!-- /.col-lg-6 (nested) -->
+                                
+                                <!-- /.col-lg-6 (nested) -->
+                            </div>
+                            <!-- /.row (nested) -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
         </div>
         <!-- /#page-wrapper -->
 
@@ -365,19 +415,29 @@
 
     <!-- Metis Menu Plugin JavaScript -->
     <script src="${ctx}/sbadmin/sb-admin/bower_components/metisMenu/dist/metisMenu.min.js"></script>
-
+   
     <!-- Custom Theme JavaScript -->
     <script src="${ctx}/sbadmin/sb-admin/dist/js/sb-admin-2.js"></script>
+    
+    <!-- DataTables JavaScript -->
+    <script src="${ctx}/sbadmin/sb-admin/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="${ctx}/sbadmin/sb-admin/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
 
 	<script type="text/javascript">
 	
-	//注销
-	function logout() {
-		var r = confirm("您确定要退出系统吗？")
-		if(r){
-			location.href = '${ctx}/logout.action';
+		//注销
+		function logout() {
+			var r = confirm("您确定要退出系统吗？")
+			if(r){
+				location.href = '${ctx}/logout.action';
+			}
 		}
-	}
+		
+		$(document).ready(function() {
+	        $('#dataTables-example').DataTable({
+	                responsive: true
+	        });
+	    });
 	</script>
 </body>
 
