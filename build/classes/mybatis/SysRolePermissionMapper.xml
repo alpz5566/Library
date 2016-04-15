@@ -178,4 +178,14 @@
       sys_permission_id = #{sysPermissionId,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
+  
+  <delete id="deleteConnByRoleId" parameterType="java.lang.String">
+  	delete from sys_role_permission
+  		where sys_role_id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+  <delete id="deleteConnByPermissionId" parameterType="java.lang.Long">
+	delete from sys_role_permission
+  		where sys_permission_id = #{id,jdbcType=BIGINT}
+  </delete>
 </mapper>

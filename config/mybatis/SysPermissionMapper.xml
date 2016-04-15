@@ -288,4 +288,9 @@
   	select distinct type from sys_permission
   </select>
   
+  <!-- 删除子节点 -->
+  <delete id="deleteChildByPermissionId" parameterType="java.lang.Long">
+  	delete from sys_permission 
+  		where parentid = #{id,jdbcType=BIGINT}
+  </delete>
 </mapper>

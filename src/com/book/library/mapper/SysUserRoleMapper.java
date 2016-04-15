@@ -30,4 +30,7 @@ public interface SysUserRoleMapper {
 
     //根据userid删除user-->role关联表
 	void deleteConnByUserId(String id);
+
+	//根据roleid删除user-->role关联表
+	void deleteConnByRoleId(String id);
 }

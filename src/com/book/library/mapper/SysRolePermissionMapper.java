@@ -27,4 +27,8 @@ public interface SysRolePermissionMapper {
     int updateByPrimaryKeySelective(SysRolePermission record);
 
     int updateByPrimaryKey(SysRolePermission record);
+
+	void deleteConnByRoleId(String id);
+
+	void deleteConnByPermissionId(Long id);
 }

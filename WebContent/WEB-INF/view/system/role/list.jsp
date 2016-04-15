@@ -363,6 +363,7 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                         	<button onclick="saveRole();" data-brackets-id="248" type="button" class="btn btn-success">添加角色</button>
+                        	<br><br>
                             <div class="dataTable_wrapper">
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
@@ -441,9 +442,9 @@
 		
 		//删除角色
 		function deleteSysRole(roleid){
-			var r = confirm("您确定要删除该用户嘛，删除后用户所属权限随即删除！")
+			var r = confirm("您确定要删除该角色嘛，删除后角色所属权限和所属用户随即删除，请慎重考虑！")
 			if(r){
-				location.href = '${ctx}/sysrole/delete?id=' + userid;
+				location.href = '${ctx}/sysrole/delete?id=' + roleid;
 			}
 		}
 		

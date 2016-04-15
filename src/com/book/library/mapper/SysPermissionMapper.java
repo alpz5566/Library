@@ -31,4 +31,6 @@ public interface SysPermissionMapper {
 	List<SysPermission> selectPermissionByRoleId(String id);
 
 	List<String> findAllType();
+
+	void deleteChildByPermissionId(Long id);
 }

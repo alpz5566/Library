@@ -354,10 +354,10 @@
                                     <a href="${ctx}/sysuser/userlist.action">用户管理</a>
                                 </li>
                                 <li>
-                                    <a href="morris.html">角色管理</a>
+                                    <a href="${ctx}/sysrole/rolelist.action">角色管理</a>
                                 </li>
                                 <li>
-                                    <a href="morris.html">资源权限管理</a>
+                                    <a href="${ctx}/syspermission/permissionlist.action">资源权限管理</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -383,10 +383,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    
-                                    <form:form method="post" commandName="role">
-								        <%-- <form:hidden path="id"/> --%>
-								        							
+                                    <form:form method="post" commandName="role">								        							
 								        <form:hidden path="id"/>
 								        <form:hidden path="available"/>
 										
@@ -396,35 +393,15 @@
 								            <form:label path="name">角色名：</form:label>
 								            <form:input path="name"/>
 								        </div>	
-								        
-
-										<%-- <c:if test="${op eq '新增'}">
-								            <div class="form-group">
-								                <form:label path="password">密码：</form:label>
-								                <form:password path="password"/>
-								            </div>
-								        </c:if> --%>
-								
-										<%-- <div class="form-group">
-								            <form:label path="resourceIds">拥有的资源列表：</form:label>
-								            <form:hidden path="resourceIds"/>
-								            <input type="text" id="resourceName" name="resourceName" value="${zhangfn:resourceNames(role.resourceIds)}" readonly>
-								            <a id="menuBtn" href="#">选择</a>
-								        </div> --%>
-								        
-								        <%-- <div class="form-group">
-								            <form:label path="permissionIds">拥有的资源列表：</form:label>
-								            <form:hidden path="permissionIds"/>
-								            <input type="text" id="permissionName" name="permissionName" value="${zhangfn:permissionNames(role.permissionIds)}" readonly>
-								            <a id="menuBtn" href="#">选择</a>
-								        </div> --%>
-								        
+								                
 								        <div class="form-group">
 								            <form:label path="permissionIds">拥有的资源列表：</form:label>
 								            <form:hidden path="permissionIds"/>
 								            <input type="text" id="permissionName" name="permissionName" value="${permissionNames}" readonly>
 								            <a id="menuBtn" href="#">选择</a>
 								        </div>
+								        
+								        
 										
 								        <form:button>${op}</form:button>
 								
@@ -531,17 +508,13 @@
                 if (id.length > 0 ) id = id.substring(0, id.length-1);
                 if (name.length > 0 ) name = name.substring(0, name.length-1);
                 $("#permissionIds").val(id);
-                //$("#permissionName").val(name);
-                $("#permissionListStr").val(name);
+                $("#permissionName").val(name);
 //                hideMenu();
             }
 
             function showMenu() {
-                //var cityObj = $("#permissionName");
-                //var cityOffset = $("#permissionName").offset();
-                
-                var cityObj = $("#permissionListStr");
-                var cityOffset = $("#permissionListStr").offset();
+                var cityObj = $("#permissionName");
+                var cityOffset = $("#permissionName").offset();
                 
                 $("#menuContent").css({left:cityOffset.left + "px", top:cityOffset.top + cityObj.outerHeight() + "px"}).slideDown("fast");
 

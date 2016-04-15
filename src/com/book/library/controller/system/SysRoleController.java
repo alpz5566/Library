@@ -73,7 +73,7 @@ public class SysRoleController {
 	public String saveRole(SysRole role ,Model model,RedirectAttributes redirectAttributes){
 		roleService.save(role);
 		redirectAttributes.addFlashAttribute("msg", "新增成功");
-		return "redirect:sysrole/rolelist";
+		return "redirect:/sysrole/rolelist";
 	}
 	
 	@RequestMapping(value="update",method={RequestMethod.GET})
@@ -105,9 +105,10 @@ public class SysRoleController {
 	
 	@RequestMapping(value="update",method={RequestMethod.POST})
 	public String updateRole(RedirectAttributes redirectAttributes,SysRole sysRole){
+		System.out.println(sysRole.getId());
 		roleService.updateEntity(sysRole);
 		redirectAttributes.addFlashAttribute("msg", "修改成功");
-		return "redirect:sysrole/rolelist";
+		return "redirect:/sysrole/rolelist";
 	}
 	
 	@RequestMapping(value="delete",method={RequestMethod.GET})
@@ -115,7 +116,7 @@ public class SysRoleController {
 			RedirectAttributes redirectAttributes){
 		roleService.deleteRole(id);
 		redirectAttributes.addFlashAttribute("msg", "删除成功");
-		return "redirect:sysrole/rolelist";
+		return "redirect:/sysrole/rolelist";
 	}
 	
 	public String getPermissionName(Long permissionId){

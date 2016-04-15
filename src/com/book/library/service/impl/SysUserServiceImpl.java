@@ -134,7 +134,7 @@ public class SysUserServiceImpl implements SysUserService{
 	@Override
 	public void updateEntity(SysUser sysUser) {
 		//先修改用户的角色信息（先删再插入）
-		//获取roleid集合	
+		//获取roleid集合
 		try {
 			List<String> roles = sysUser.getRoleIds();
 			String userid = sysUser.getId();

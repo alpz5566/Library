@@ -5,7 +5,7 @@ public class SysRolePermission {
 
     private String sysRoleId;
 
-    private String sysPermissionId;
+    private Long sysPermissionId;
 
     public String getId() {
         return id;
@@ -23,11 +23,25 @@ public class SysRolePermission {
         this.sysRoleId = sysRoleId == null ? null : sysRoleId.trim();
     }
 
-    public String getSysPermissionId() {
-        return sysPermissionId;
-    }
 
-    public void setSysPermissionId(String sysPermissionId) {
-        this.sysPermissionId = sysPermissionId == null ? null : sysPermissionId.trim();
-    }
+	public Long getSysPermissionId() {
+		return sysPermissionId;
+	}
+
+	public void setSysPermissionId(Long sysPermissionId) {
+		this.sysPermissionId = sysPermissionId;
+	}
+
+	public SysRolePermission(String id, String sysRoleId, Long sysPermissionId) {
+		super();
+		this.id = id;
+		this.sysRoleId = sysRoleId;
+		this.sysPermissionId = sysPermissionId;
+	}
+
+	public SysRolePermission() {
+		super();
+	}
+	
+    
 }
