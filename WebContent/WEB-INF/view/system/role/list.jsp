@@ -362,6 +362,7 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
+                        	<button onclick="saveRole();" data-brackets-id="248" type="button" class="btn btn-success">添加角色</button>
                             <div class="dataTable_wrapper">
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
@@ -431,6 +432,11 @@
 			if(r){
 				location.href = '${ctx}/logout.action';
 			}
+		}
+		
+		//添加角色
+		function saveRole(){
+			location.href = '${ctx}/sysrole/save';
 		}
 		
 		//删除角色

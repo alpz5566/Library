@@ -8,6 +8,7 @@ import javax.management.relation.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -61,6 +62,8 @@ public class SysRoleController {
 	@RequestMapping(value="save",method={RequestMethod.GET})
 	public String toSaveRolePage(Model model){
 		setCommonData(model);
+		String permissionNames = "";
+		model.addAttribute("permissionNames", permissionNames);
 		model.addAttribute("role", new SysRole());
 		model.addAttribute("op", "新增");
 		return "system/role/edit";
@@ -84,14 +87,17 @@ public class SysRoleController {
 		List<SysPermission> permissions = new ArrayList<SysPermission>();
 		List<String> permissionListStr = new ArrayList<String>();
 		List<Long> permissionIds = new ArrayList<Long>();
+		String permissionNames = "";
 		permissions = permissionService.selectPermissionByRoleId(role.getId());
 		if(permissions.size() != 0){
 			for(int i = 0;i < permissions.size();i++){
 				permissionIds.add(permissions.get(i).getId());
 			}
 			role.setPermissionIds(permissionIds);
+			permissionNames = getPermissionNames(permissionIds);
 		}
-
+		
+		model.addAttribute("permissionNames", permissionNames);
 		model.addAttribute("role", role);
 		model.addAttribute("op", "修改");
 		return "system/role/edit";
@@ -111,5 +117,39 @@ public class SysRoleController {
 		redirectAttributes.addFlashAttribute("msg", "删除成功");
 		return "redirect:sysrole/rolelist";
 	}
+	
+	public String getPermissionName(Long permissionId){
+		SysPermission sysPermission = permissionService.findByPermissionId(permissionId);
+		if(sysPermission == null){
+			return "";
+		}
+		return sysPermission.getName();
+	}
+	
+	public String getPermissionNames(List<Long> permissionIds){
+		if(permissionIds.isEmpty()){
+			return "";
+		}
+		StringBuilder s = new StringBuilder();
+    	for(Long permissionId : permissionIds){
+    		SysPermission sysPermission = permissionService.findByPermissionId(permissionId);
+    		if(sysPermission == null){
+    			return "";
+    		}
+    		s.append(sysPermission.getName());
+    		s.append(",");
+    	}
+    	if(s.length() > 0){
+    		s.deleteCharAt(s.length() - 1);
+    	}
+    	return s.toString();
+	}
+	
+	public boolean isin(Iterable iterable, Object element) {
+        if(iterable == null) {
+            return false;
+        }
+        return CollectionUtils.contains(iterable.iterator(), element);
+    }
 	
 }

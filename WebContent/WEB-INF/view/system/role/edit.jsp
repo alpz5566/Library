@@ -44,6 +44,12 @@
     
     <link rel="stylesheet" href="${ctx}/css/css.css" rel="stylesheet">
     
+    <!-- ztree -->
+    <link rel="stylesheet" href="${ctx}/JQuery zTree v3.5.15/css/zTreeStyle/zTreeStyle.css" rel="stylesheet">
+    <style>
+        ul.ztree {margin-top: 10px;border: 1px solid #617775;background: #f0f6e4;width:220px;height:200px;overflow-y:scroll;overflow-x:auto;}
+    </style>
+    
     <!-- bootstrap switch -->
     <link rel="stylesheet" href="${ctx}/css/switch/bootstrap-switch.css" rel="stylesheet">
     <link rel="stylesheet" href="${ctx}/css/switch/highlight.css" rel="stylesheet">
@@ -406,20 +412,27 @@
 								            <a id="menuBtn" href="#">选择</a>
 								        </div> --%>
 								        
-								        <div class="form-group">
+								        <%-- <div class="form-group">
 								            <form:label path="permissionIds">拥有的资源列表：</form:label>
 								            <form:hidden path="permissionIds"/>
 								            <input type="text" id="permissionName" name="permissionName" value="${zhangfn:permissionNames(role.permissionIds)}" readonly>
 								            <a id="menuBtn" href="#">选择</a>
+								        </div> --%>
+								        
+								        <div class="form-group">
+								            <form:label path="permissionIds">拥有的资源列表：</form:label>
+								            <form:hidden path="permissionIds"/>
+								            <input type="text" id="permissionName" name="permissionName" value="${permissionNames}" readonly>
+								            <a id="menuBtn" href="#">选择</a>
 								        </div>
-								
+										
 								        <form:button>${op}</form:button>
 								
 								    </form:form>
                                     
-                                    <div id="menuContent" class="menuContent" style="display:none; position: absolute;">
-								        <ul id="tree" class="ztree" style="margin-top:0; width:160px;"></ul>
-								    </div>
+	                                    <div id="menuContent" class="menuContent" style="display:none; position: absolute;">
+									        <ul id="tree" class="ztree" style="margin-top:0; width:160px;"></ul>
+									    </div>
                                     
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
@@ -457,6 +470,9 @@
     <script src="${ctx}/sbadmin/sb-admin/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
 
 	<script src="${ctx}/js/bootstrap-switch.js"></script>
+	
+	<!-- ztree -->
+	<script src="${ctx}/JQuery zTree v3.5.15/js/jquery.ztree.all-3.5.min.js"></script>
 
 	<script type="text/javascript">
 	
@@ -495,10 +511,10 @@
             };
 
             var zNodes =[
-                <c:forEach items="${resourceList}" var="r">
-                <c:if test="${not r.rootNode}">
-                { id:${r.id}, pId:${r.parentId}, name:"${r.name}", checked:${zhangfn:in(role.resourceIds, r.id)}},
-                </c:if>
+                <c:forEach items="${permissionList}" var="r">
+	                <c:if test="${not r.rootNode}">	                	
+	                	{ id:${r.id}, pId:${r.parentid}, name:"${r.name}",checked:${zhangfn:in(role.permissionIds, r.id)}},
+	                </c:if>
                 </c:forEach>
             ];
 
@@ -514,14 +530,19 @@
                 }
                 if (id.length > 0 ) id = id.substring(0, id.length-1);
                 if (name.length > 0 ) name = name.substring(0, name.length-1);
-                $("#resourceIds").val(id);
-                $("#resourceName").val(name);
+                $("#permissionIds").val(id);
+                //$("#permissionName").val(name);
+                $("#permissionListStr").val(name);
 //                hideMenu();
             }
 
             function showMenu() {
-                var cityObj = $("#resourceName");
-                var cityOffset = $("#resourceName").offset();
+                //var cityObj = $("#permissionName");
+                //var cityOffset = $("#permissionName").offset();
+                
+                var cityObj = $("#permissionListStr");
+                var cityOffset = $("#permissionListStr").offset();
+                
                 $("#menuContent").css({left:cityOffset.left + "px", top:cityOffset.top + cityObj.outerHeight() + "px"}).slideDown("fast");
 
                 $("body").bind("mousedown", onBodyDown);
