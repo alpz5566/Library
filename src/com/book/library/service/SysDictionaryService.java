@@ -16,4 +16,6 @@ public interface SysDictionaryService {
 
 	void delete(String id);
 
+	List<SysDictionary> findByType(String type);
+
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.book.library.mapper.SysDictionaryMapper;
 import com.book.library.mapper.XtSubjectMapper;
 import com.book.library.po.XtSubject;
 import com.book.library.po.XtSubjectExample;
@@ -17,6 +18,9 @@ public class XtSubjectServiceImpl implements XtSubjectService{
 	
 	@Autowired
 	private XtSubjectMapper xtSubjectMapper;
+	
+	@Autowired
+	private SysDictionaryMapper dictionaryMapper;
 
 	@Override
 	public List<XtSubject> findAll() {

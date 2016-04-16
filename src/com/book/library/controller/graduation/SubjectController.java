@@ -2,6 +2,8 @@ package com.book.library.controller.graduation;
 
 import java.util.List;
 
+import javax.security.auth.Subject;
+
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.book.library.po.SysDictionary;
 import com.book.library.po.XtSubject;
 import com.book.library.service.SysDictionaryService;
 import com.book.library.service.XtSubjectService;
@@ -41,6 +44,10 @@ public class SubjectController {
 //	@RequiresPermissions("subject:create")
 	@RequestMapping(value="/save",method={RequestMethod.GET})
 	public String toCreateDicPage(Model model){
+		List<SysDictionary> difficults = dictionaryService.findByType("difficult");
+		List<SysDictionary> directions = dictionaryService.findByType("direction");
+		model.addAttribute("difficults", difficults);
+		model.addAttribute("directions", directions);
 		model.addAttribute("subject", new XtSubject());
 		model.addAttribute("op", "新增");
 		return "subject/edit";

@@ -1,6 +1,7 @@
 package com.book.library.po;
 
 import java.util.Date;
+import java.util.List;
 
 public class XtSubject {
     private String id;
@@ -18,7 +19,9 @@ public class XtSubject {
     private String review;
 
     private Date createTime;
-
+    
+    private String desc;
+    
     public String getId() {
         return id;
     }
@@ -82,4 +85,14 @@ public class XtSubject {
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
+
+	public String getDesc() {
+		return desc;
+	}
+
+	public void setDesc(String desc) {
+		this.desc = desc;
+	}
+    
+    
 }

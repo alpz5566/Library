@@ -48,5 +48,14 @@ public class SysDictionaryServiceImpl implements SysDictionaryService{
 	public void delete(String id) {
 		sysDictionaryMapper.deleteByPrimaryKey(id);
 	}
+
+	@Override
+	public List<SysDictionary> findByType(String type) {
+		SysDictionaryExample example = new SysDictionaryExample();
+		SysDictionaryExample.Criteria criteria = example.createCriteria();
+		criteria.andTypeEqualTo(type);
+		List<SysDictionary> dictionaries = sysDictionaryMapper.selectByExample(example); 
+		return dictionaries;
+	}
 	
 }

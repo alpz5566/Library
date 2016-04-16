@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
@@ -280,10 +281,10 @@
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 选题管理<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="${ctx}/subject/list.action">所有课题</a>
+                                    <a href="${ctx}/index/subjectlist.action">所有课题</a>
                                 </li>
                                 <li>
-                                    <a href="${ctx}/subject/mysubjectlist.action">我的选题列表</a>
+                                    <a href="${ctx}/index/mysubjectlist.action">我的选题列表</a>
                                 </li>
                                 <li>
                                     <a href="${ctx}/index/addsubject.action">添加选题</a>
@@ -354,68 +355,72 @@
 
 		<!-- 华丽丽分割线。。。。。 -->
         <div id="page-wrapper">
-        		<div class="row">
+        	
+            <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            选题列表
+                            编辑选题
                         </div>
-                        <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <div class="dataTable_wrapper">
-                            	<button onclick="saveSubject();" data-brackets-id="248" type="button" class="btn btn-success">添加选题</button>
-	                        	<br><br>
-                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                    <thead>
-                                        <tr>
-                                            <th>选题名称</th>
-                                            <th>选题方向</th>
-                                            <th>选题难度</th>
-                                            <th>指导老师</th>
-                                            <th>是否有人选</th>
-                                            <th>审核情况</th>
-                                            <th>操作</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    	<c:forEach items="${subjects}" var="subject">
-	                                        <tr class="odd gradeX">
-	                                            <td>${subject.name}</td>
-	                                            <c:choose>
-	                                            	<c:when test="${subject.direction == 1}"><td>设计运用</td></c:when>
-	                                            	<c:when test="${subject.direction == 2}"><td>理论研究</td></c:when>
-	                                            </c:choose>
-	                                            <c:choose>
-	                                            	<c:when test="${subject.difficult == 1}"><td>简单</td></c:when>
-	                                            	<c:when test="${subject.difficult == 2}"><td>中等</td></c:when>
-	                                            	<c:when test="${subject.difficult == 3}"><td>较难</td></c:when>
-	                                            	<c:when test="${subject.difficult == 4}"><td>困难</td></c:when>
-	                                            </c:choose>
-	                                            <td>${subject.tid}</td>
-	                                            <c:choose>
-	                                            	<c:when test="${subject.isselect == 0}"><td>未选</td></c:when>
-	                                            	<c:when test="${subject.isselect == 1}"><td>已选</td></c:when>
-	                                            </c:choose>
-	                                            <c:choose>
-	                                            	<c:when test="${subject.review == '0'}"><td>通过审核</td></c:when>
-	                                            	<c:when test="${subject.review == '1'}"><td>未审核</td></c:when>
-	                                            </c:choose>
-	                                            <%-- <td class="center">${user.locked}</td> --%>
-	                                           <%--  <td>
-	                                            	<c:if test="${user.locked == 0 }">未锁定</c:if>
-	                                            	<c:if test="${user.locked == 1 }">锁定</c:if>
-												</td> --%>
-	                                            
-	                                            <td class="center">
-	                                            	<button onclick="showDetail('${subject.id}');" data-brackets-id="250" type="button" class="btn btn-warning">详情</button>
-	                                            	<button onclick="deleteSubject('${subject.id}');" data-brackets-id="251" type="button" class="btn btn-danger">删除</button>
-	                                            </td>
-	                                        </tr>                                    		
-                                    	</c:forEach>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- /.table-responsive -->
+							<div class="row">
+                                <div class="col-lg-6">
+                                    <form role="form" action="" method="post">
+                                        <div class="form-group">
+                                            <label>课题名称</label>
+                                            <input class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>课题难度</label>
+                                            <select class="form-control"></select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>课题方向</label>
+                                            <select class="form-control"></select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>所属教师</label>
+                                            <select class="form-control"></select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>课题简介</label>
+                                            <textarea class="form-control" rows="3"></textarea>
+                                        </div>
+                                        
+                                        <form:button>${op}</form:button>
+                                    </form> 
+                                    
+                                    <form:form method="post" commandName="subject">
+                                    
+								        <div class="form-group">
+								            <form:label path="name">课题名称：</form:label>
+								            <form:input path="name"/>
+								        </div>
+								        <div class="form-group">
+								            <form:label path="difficult">课题难度:</form:label>
+								            <form:select path="difficult" itemLabel="${difficults.name}" itemValue="${difficults.code}"></form:select>
+								        </div>
+								        <div class="form-group">
+								            <form:label path="direction">课题方向:</form:label>
+								            <form:select path="direction" itemLabel="${directions.name}" itemValue="${directions.code}"></form:select>
+								        </div>
+								        <div class="form-group">
+								            <form:label path="tid">所属教师:</form:label>
+								            <%-- <form:select path="tid" itemLabel="" itemValue=""></form:select> --%>
+								            <form:select path="tid"></form:select>
+								        </div>
+								        <div class="form-group">
+								            <form:label path="desc">课题要求</form:label>
+								            <form:textarea path="desc"/>
+								        </div>		
+
+								
+								        <form:button>${op}</form:button>
+								
+								    </form:form>
+                                </div>
+                                <!-- /.col-lg-6 (nested) -->
+                            </div>                            
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -455,45 +460,6 @@
 			}
 		}
 		
-		//添加选题
-		function saveSubject(){
-			location.href = '${ctx}/subject/save';
-		}
-		
-		//删除用户
-		function deleteSubject(id){
-			var r = confirm("您确定要删除该选题嘛")
-			if(r){
-				location.href = '${ctx}/subject/delete?id=' + id;
-			}
-		}
-		
-		//修改用户
-		function updateSubject(id){
-			location.href = '${ctx}/subject/update?id=' + id;
-		}
-		
-		$(document).ready(function() {
-	        $('#dataTables-example').DataTable({
-	                responsive: true,
-	                oLanguage: {
-	                	"sProcessing": "正在加载中......",
-	                	"sLengthMenu": "每页显示 _MENU_ 条记录",
-	                	"sZeroRecords": "正在加载中......",
-	                	"sEmptyTable": "查询无数据！",
-	                	"sInfo": "当前显示 _START_ 到 _END_ 条，共 _TOTAL_ 条记录",
-	                	"sInfoEmpty": "显示0到0条记录",
-	                	"sInfoFiltered": "数据表中共为 _MAX_ 条记录",
-	                	"sSearch": "搜索",
-	                	"oPaginate": {
-		                	"sFirst": "首页",
-		                	"sPrevious": "上一页",
-		                	"sNext": "下一页",
-		                	"sLast": "末页"
-						}
-	        		}
-	        });
-	    });
 	</script>
 </body>
 
