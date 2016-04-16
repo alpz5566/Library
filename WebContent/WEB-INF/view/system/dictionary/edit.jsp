@@ -377,7 +377,8 @@
 								        </div>
 								        <div class="form-group">
 								            <form:label path="code">编码：</form:label>
-								            <form:input path="code"/>
+								            <form:input path="code" maxlength="3" onkeyup="var v=this.value||'';v=v.replace(/[^\d]/g,'');this.value=v.substr(0,3);"/>
+								            （ps：只允许输入三位有效数字）
 								        </div>
 								        <div class="form-group">
 								            <form:label path="name">名称：</form:label>
