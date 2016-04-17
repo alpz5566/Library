@@ -22,6 +22,8 @@ public class XtSubject {
     
     private String description;
     
+    private XtTeacher teacher;
+    
     public String getId() {
         return id;
     }
@@ -94,7 +96,13 @@ public class XtSubject {
 		this.description = description;
 	}
 
+	public XtTeacher getTeacher() {
+		return teacher;
+	}
+
+	public void setTeacher(XtTeacher teacher) {
+		this.teacher = teacher;
+	}
+
 	
-    
-    
 }

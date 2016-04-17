@@ -189,5 +189,10 @@
 	    where sys_user_id = #{id,jdbcType=VARCHAR})
   </select>
   
+  <select id="selectIdByName" resultType="java.lang.String" parameterType="java.lang.String">
+  	select id 
+  	from sys_role
+  	where name = #{name,jdbcType=VARCHAR}
+  </select>
   
 </mapper>

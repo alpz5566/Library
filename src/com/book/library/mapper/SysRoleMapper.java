@@ -29,4 +29,6 @@ public interface SysRoleMapper {
     int updateByPrimaryKey(SysRole record);
 
 	List<SysRole> selectRoleByUserid(String id);
+
+	String selectIdByName(String name);
 }

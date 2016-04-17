@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.book.library.po.SysUser;
 import com.book.library.po.XtTeacher;
+import com.book.library.service.SysUserService;
 import com.book.library.service.XtTeacherService;
 import com.book.library.utill.ItextManager;
 
@@ -26,6 +28,9 @@ public class TeacherController {
 
 	@Autowired
 	private XtTeacherService teacherService;
+	
+	@Autowired
+	private SysUserService sysUserService;
 	
 //	@RequiresPermissions("teacher:viewList")
 	@RequestMapping(value="/list",method={RequestMethod.GET})
@@ -46,8 +51,9 @@ public class TeacherController {
 	
 //	@RequiresPermissions("subject:create")
 	@RequestMapping(value="/save",method={RequestMethod.POST})
-	public String CreateDiction(RedirectAttributes attributes,XtTeacher teacher){
-		teacherService.save(teacher);
+	public String CreateDiction(RedirectAttributes attributes,XtTeacher teacher,
+			SysUser sysUser){
+		teacherService.save(teacher,sysUser);
 		attributes.addFlashAttribute("msg", "新增成功");
 		return "redirect:/teacher/list";
 	}
@@ -94,8 +100,8 @@ public class TeacherController {
 	    ItextManager tm = ItextManager.getInstance();  
 	    List<XtTeacher> teachers = teacherService.findAll();  
 	      
-	    tm.createRtfContextTeacher(teachers,out,type);  
-	      
+	    tm.createRtfContextTeacher(teachers,out,type);
+	    
 	    out.flush();  
 	    out.close();  
 	    return null;  

@@ -359,11 +359,17 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             教师列表
+                            <form id="form1" action="${ctx}/teacher/exportword.action" method="post">  
+						        <div>  
+						            <input id="btn_word" type="button" value="导出word" />   
+						            <input id="btn_pdf" type="button" value="导出pdf" />  
+						        </div>  
+						    </form>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="dataTable_wrapper">
-                            	<button onclick="saveSubject();" data-brackets-id="248" type="button" class="btn btn-success">添加教师</button>
+                            	<button onclick="saveTeacher();" data-brackets-id="248" type="button" class="btn btn-success">添加教师</button>
 	                        	<br><br>
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
@@ -399,12 +405,7 @@
                                 </table>
                             </div>
                             <!-- /.table-responsive -->
-                            <form id="form1" action="${ctx}/teacher/exportword.action" method="post">  
-						        <div>  
-						            <input id="btn_word" type="button" value="导出word" />   
-						            <input id="btn_pdf" type="button" value="导出pdf" />  
-						        </div>  
-						    </form>
+                            
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -443,7 +444,7 @@
 				location.href = '${ctx}/logout.action';
 			}
 		}
-		
+
 		//添加选题
 		function saveTeacher(){
 			location.href = '${ctx}/teacher/save';

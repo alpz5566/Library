@@ -16,8 +16,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.book.library.po.SysDictionary;
 import com.book.library.po.SysRole;
 import com.book.library.po.XtSubject;
+import com.book.library.po.XtTeacher;
 import com.book.library.service.SysDictionaryService;
 import com.book.library.service.XtSubjectService;
+import com.book.library.service.XtTeacherService;
 
 /**
  * 选题控制器
@@ -34,10 +36,17 @@ public class SubjectController {
 	@Autowired
 	private SysDictionaryService dictionaryService;
 	
+	@Autowired
+	private XtTeacherService teacherService;
+	
 //	@RequiresPermissions("subject:viewList")
 	@RequestMapping(value="/list",method={RequestMethod.GET})
 	public String showList(Model model){
 		List<XtSubject> subjects = subjectService.findAll();
+		for(XtSubject subject : subjects){
+			XtTeacher teacher = teacherService.findTeacherById(subject.getTid());
+			subject.setTeacher(teacher);
+		}
 		model.addAttribute("subjects", subjects);
 		return "subject/list";
 	}
@@ -98,6 +107,8 @@ public class SubjectController {
 	private void setCommonData(Model model) {
 		List<SysDictionary> difficults = dictionaryService.findByType("difficult");
 		List<SysDictionary> directions = dictionaryService.findByType("direction");
+		List<XtTeacher> teachers = teacherService.findAll();
+		model.addAttribute("teachers", teachers);
 		model.addAttribute("difficults", difficults);
 		model.addAttribute("directions", directions);
     }

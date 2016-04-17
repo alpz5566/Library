@@ -391,7 +391,7 @@
 	                                            	<c:when test="${subject.difficult == 3}"><td>较难</td></c:when>
 	                                            	<c:when test="${subject.difficult == 4}"><td>困难</td></c:when>
 	                                            </c:choose>
-	                                            <td>${subject.tid}</td>
+	                                            <td>${subject.teacher.name}</td>
 	                                            <c:choose>
 	                                            	<c:when test="${subject.isselect == 0}"><td>未选</td></c:when>
 	                                            	<c:when test="${subject.isselect == 1}"><td>已选</td></c:when>

@@ -370,7 +370,7 @@ public class MD5 {
 		if (Array.getLength(args) == 0) { // 如果没有参数，执行标准的Test Suite
 
 			System.out.println("MD5 Test suite:");
-			System.out.println(m.getMD5ofStr("eteokues111111"));
+			System.out.println(m.getMD5ofStr("qwert1"));
 			System.out.println("MD5(\"\"):" + m.getMD5ofStr(""));
 			System.out.println("MD5(\"a\"):" + m.getMD5ofStr("a"));
 			System.out.println("MD5(\"abc\"):" + m.getMD5ofStr("abc"));

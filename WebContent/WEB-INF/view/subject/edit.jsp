@@ -281,13 +281,13 @@
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 选题管理<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="${ctx}/index/subjectlist.action">所有课题</a>
+                                    <a href="${ctx}/subject/list.action">所有课题</a>
                                 </li>
                                 <li>
-                                    <a href="${ctx}/index/mysubjectlist.action">我的选题列表</a>
+                                    <a href="${ctx}/subject/mysubjectlist.action">我的选题列表</a>
                                 </li>
                                 <li>
-                                    <a href="${ctx}/index/addsubject.action">添加选题</a>
+                                    <a href="${ctx}/subject/save.action">添加选题</a>
                                 </li>
                                 <li>
                                     <a href="morris.html">批量导入选题</a>
@@ -407,7 +407,7 @@
 								        <div class="form-group">
 								            <form:label path="tid">所属教师 : </form:label>
 								            <%-- <form:select path="tid" itemLabel="" itemValue=""></form:select> --%>
-								            <form:select path="tid"></form:select>
+								            <form:select path="tid" items="${teachers}" itemLabel="name" itemValue="id"></form:select>
 								        </div>
 								        <div class="form-group">
 								            <form:label path="description">课题要求</form:label>
