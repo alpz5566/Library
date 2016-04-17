@@ -26,6 +26,13 @@
 
     <!-- Custom CSS -->
     <link href="${ctx}/sbadmin/sb-admin/dist/css/sb-admin-2.css" rel="stylesheet">
+    
+    <!-- DataTables CSS -->
+    <link href="${ctx}/sbadmin/sb-admin/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet">
+
+    <!-- DataTables Responsive CSS -->
+    <link href="${ctx}/sbadmin/sb-admin/bower_components/datatables-responsive/css/responsive.dataTables.scss" rel="stylesheet">
+    
 
     <!-- Morris Charts CSS -->
     <link href="${ctx}/sbadmin/sb-admin/bower_components/morrisjs/morris.css" rel="stylesheet">
@@ -279,7 +286,7 @@
                                     <a href="${ctx}/subject/mysubjectlist.action">我的选题列表</a>
                                 </li>
                                 <li>
-                                    <a href="${ctx}/subject/save.action">添加选题</a>
+                                    <a href="${ctx}/index/addsubject.action">添加选题</a>
                                 </li>
                                 <li>
                                     <a href="morris.html">批量导入选题</a>
@@ -297,7 +304,7 @@
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 教师管理<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="${ctx }/teacher/list.adction">查看所有教师</a>
+                                    <a href="${ctx}/teacher/list">查看所有教师</a>
                                 </li>
                                 <li>
                                     <a href="morris.html">导出所有教师</a>
@@ -309,7 +316,7 @@
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 学生管理<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="${ctx }/student/list.action">查看所有学生</a>
+                                    <a href="${ctx}/student/list">查看所有学生</a>
                                 </li>
                                 <li>
                                     <a href="morris.html">导出所有学生</a>
@@ -338,9 +345,6 @@
                         <li>
                             <a href="forms.html"><i class="fa fa-edit fa-fw"></i> 流程管理</a>
                         </li>
-                        <li>
-                            <a href="${ctx}/dictionary/list.action"><i class="fa fa-edit fa-fw"></i> 数据字典管理</a>
-                        </li>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -350,7 +354,58 @@
 
 		<!-- 华丽丽分割线。。。。。 -->
         <div id="page-wrapper">
-        	主页面
+        		<div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            教师列表
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="dataTable_wrapper">
+                            	<button onclick="saveSubject();" data-brackets-id="248" type="button" class="btn btn-success">添加教师</button>
+	                        	<br><br>
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                    <thead>
+                                        <tr>
+                                            <th>教师编号</th>
+                                            <th>所在教研室</th>
+                                            <th>教师名</th>
+                                            <th>职称</th>
+                                            <th>限带人数</th>
+                                            <th>电话</th>
+                                            <th>email</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    	<c:forEach items="${teachers}" var="teacher">
+	                                        <tr class="odd gradeX">
+	                                            <td>${teacher.code}</td>
+	                                            <td>${teacher.classroom}</td>
+	                                            <td>${teacher.name}</td>
+	                                            <td>${teacher.title}</td>
+	                                            <td>${teacher.maxStu}</td>
+	                                            <td>${teacher.tel}</td>
+	                                            <td>${teacher.email}</td>
+	                                            
+	                                            <td class="center">
+	                                            	<button onclick="showDetail('${teacher.id}');" data-brackets-id="250" type="button" class="btn btn-warning">详情</button>
+	                                            	<button onclick="deleteTeacher('${teacher.id}');" data-brackets-id="251" type="button" class="btn btn-danger">删除</button>
+	                                            </td>
+	                                        </tr>                                    		
+                                    	</c:forEach>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.table-responsive -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
         </div>
         <!-- /#page-wrapper -->
 
@@ -365,19 +420,63 @@
 
     <!-- Metis Menu Plugin JavaScript -->
     <script src="${ctx}/sbadmin/sb-admin/bower_components/metisMenu/dist/metisMenu.min.js"></script>
-
+   
     <!-- Custom Theme JavaScript -->
     <script src="${ctx}/sbadmin/sb-admin/dist/js/sb-admin-2.js"></script>
+    
+    <!-- DataTables JavaScript -->
+    <script src="${ctx}/sbadmin/sb-admin/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="${ctx}/sbadmin/sb-admin/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
 
 	<script type="text/javascript">
 	
-	//注销
-	function logout() {
-		var r = confirm("您确定要退出系统吗？")
-		if(r){
-			location.href = '${ctx}/logout.action';
+		//注销
+		function logout() {
+			var r = confirm("您确定要退出系统吗？")
+			if(r){
+				location.href = '${ctx}/logout.action';
+			}
 		}
-	}
+		
+		//添加选题
+		function saveTeacher(){
+			location.href = '${ctx}/teacher/save';
+		}
+		
+		//删除用户
+		function deleteTeacher(id){
+			var r = confirm("您确定要删除该选题嘛")
+			if(r){
+				location.href = '${ctx}/teacher/delete?id=' + id;
+			}
+		}
+		
+		//修改用户
+		function updateTeacher(id){
+			location.href = '${ctx}/teacher/update?id=' + id;
+		}
+		
+		$(document).ready(function() {
+	        $('#dataTables-example').DataTable({
+	                responsive: true,
+	                oLanguage: {
+	                	"sProcessing": "正在加载中......",
+	                	"sLengthMenu": "每页显示 _MENU_ 条记录",
+	                	"sZeroRecords": "正在加载中......",
+	                	"sEmptyTable": "查询无数据！",
+	                	"sInfo": "当前显示 _START_ 到 _END_ 条，共 _TOTAL_ 条记录",
+	                	"sInfoEmpty": "显示0到0条记录",
+	                	"sInfoFiltered": "数据表中共为 _MAX_ 条记录",
+	                	"sSearch": "搜索",
+	                	"oPaginate": {
+		                	"sFirst": "首页",
+		                	"sPrevious": "上一页",
+		                	"sNext": "下一页",
+		                	"sLast": "末页"
+						}
+	        		}
+	        });
+	    });
 	</script>
 </body>
 
