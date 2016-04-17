@@ -399,6 +399,12 @@
                                 </table>
                             </div>
                             <!-- /.table-responsive -->
+                            <form id="form1" action="${ctx}/teacher/exportword.action" method="post">  
+						        <div>  
+						            <input id="btn_word" type="button" value="导出word" />   
+						            <input id="btn_pdf" type="button" value="导出pdf" />  
+						        </div>  
+						    </form>
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -477,6 +483,14 @@
 	        		}
 	        });
 	    });
+		
+		 $("#btn_word").on("click", function() {  
+	            $("#form1").prop("action", "${ctx}/teacher/exportword.action?type=word").submit();  
+	        });  
+	  
+        $("#btn_pdf").on("click", function() {  
+            $("#form1").prop("action", "${ctx}/teacher/exportword.action?type=pdf").submit();  
+        });  
 	</script>
 </body>
 

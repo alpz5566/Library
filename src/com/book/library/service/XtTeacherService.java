@@ -16,4 +16,6 @@ public interface XtTeacherService {
 
 	void update(XtTeacher teacher);
 
+	List<XtTeacher> getData();
+
 }

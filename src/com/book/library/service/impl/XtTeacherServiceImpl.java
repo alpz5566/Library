@@ -46,6 +46,12 @@ public class XtTeacherServiceImpl implements XtTeacherService{
 	public void update(XtTeacher teacher) {
 		teacherMapper.updateByPrimaryKey(teacher);
 	}
+
+	@Override
+	public List<XtTeacher> getData() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 	

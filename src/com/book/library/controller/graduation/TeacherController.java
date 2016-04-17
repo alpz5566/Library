@@ -1,6 +1,12 @@
 package com.book.library.controller.graduation;
 
+import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.book.library.po.XtTeacher;
 import com.book.library.service.XtTeacherService;
+import com.book.library.utill.ItextManager;
 
 @Controller
 @RequestMapping(value="/teacher")
@@ -71,5 +78,27 @@ public class TeacherController {
 		attributes.addFlashAttribute("msg", "删除成功");
 		return "redirect:/teacher/list";
 	}
+	
+	//导出教师数据
+	@RequestMapping(value="/exportword")  
+	public String exportWord(HttpServletRequest request,HttpServletResponse response) throws Exception{  
+	    String type = request.getParameter("type");  
+	    response.setContentType("application/octet-stream; charset=UTF-8");    
+	    if("word".equals(type)){  
+	        response.setHeader("content-disposition", "attachment;filename=" + new SimpleDateFormat("yyyyMMddHH:mm:ss").format(new Date()) + ".doc");  
+	    }else if("pdf".equals(type)){  
+	        response.setHeader("content-disposition", "attachment;filename=" + new SimpleDateFormat("yyyyMMddHH:mm:ss").format(new Date()) + ".pdf");  
+	    }  
+	      
+	    OutputStream out = response.getOutputStream();  
+	    ItextManager tm = ItextManager.getInstance();  
+	    List<XtTeacher> teachers = teacherService.findAll();  
+	      
+	    tm.createRtfContextTeacher(teachers,out,type);  
+	      
+	    out.flush();  
+	    out.close();  
+	    return null;  
+	}  
 	
 }
