@@ -10,6 +10,7 @@
     <result column="isselect" property="isselect" jdbcType="INTEGER" />
     <result column="review" property="review" jdbcType="CHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="descriptionription" property="descriptionription" jdbcType="VARCHAR"/>
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -70,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, name, difficult, direction, tid, isselect, review, create_time
+    id, name, difficult, direction, tid, isselect, review, create_time,description
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.book.library.po.XtSubjectExample" >
     select
@@ -105,10 +106,10 @@
   <insert id="insert" parameterType="com.book.library.po.XtSubject" >
     insert into xt_subject (id, name, difficult, 
       direction, tid, isselect, 
-      review, create_time)
+      review, create_time,description)
     values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{difficult,jdbcType=INTEGER}, 
       #{direction,jdbcType=INTEGER}, #{tid,jdbcType=VARCHAR}, #{isselect,jdbcType=INTEGER}, 
-      #{review,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP})
+      #{review,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP},#{description,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.book.library.po.XtSubject" >
     insert into xt_subject
@@ -137,6 +138,9 @@
       <if test="createTime != null" >
         create_time,
       </if>
+      <if test="description != null" >
+        description,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -162,6 +166,9 @@
       </if>
       <if test="createTime != null" >
         #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -198,6 +205,9 @@
       <if test="record.createTime != null" >
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -212,7 +222,8 @@
       tid = #{record.tid,jdbcType=VARCHAR},
       isselect = #{record.isselect,jdbcType=INTEGER},
       review = #{record.review,jdbcType=CHAR},
-      create_time = #{record.createTime,jdbcType=TIMESTAMP}
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      description = #{record.description,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -241,6 +252,9 @@
       <if test="createTime != null" >
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
@@ -252,7 +266,8 @@
       tid = #{tid,jdbcType=VARCHAR},
       isselect = #{isselect,jdbcType=INTEGER},
       review = #{review,jdbcType=CHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP}
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      description = #{description,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

@@ -1,6 +1,7 @@
 package com.book.library.service.impl;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -31,6 +32,11 @@ public class XtSubjectServiceImpl implements XtSubjectService{
 
 	@Override
 	public void save(XtSubject subject) {
+		//设置默认选项
+		subject.setId(UUID.randomUUID().toString());
+		subject.setTid("1");
+		subject.setIsselect(0);
+		subject.setReview("0");
 		xtSubjectMapper.insert(subject);
 	}
 

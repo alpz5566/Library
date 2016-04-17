@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.book.library.po.SysDictionary;
+import com.book.library.po.SysRole;
 import com.book.library.po.XtSubject;
 import com.book.library.service.SysDictionaryService;
 import com.book.library.service.XtSubjectService;
@@ -44,10 +45,11 @@ public class SubjectController {
 //	@RequiresPermissions("subject:create")
 	@RequestMapping(value="/save",method={RequestMethod.GET})
 	public String toCreateDicPage(Model model){
-		List<SysDictionary> difficults = dictionaryService.findByType("difficult");
-		List<SysDictionary> directions = dictionaryService.findByType("direction");
-		model.addAttribute("difficults", difficults);
-		model.addAttribute("directions", directions);
+//		List<SysDictionary> difficults = dictionaryService.findByType("difficult");
+//		List<SysDictionary> directions = dictionaryService.findByType("direction");
+//		model.addAttribute("difficults", difficults);
+//		model.addAttribute("directions", directions);
+		setCommonData(model);
 		model.addAttribute("subject", new XtSubject());
 		model.addAttribute("op", "新增");
 		return "subject/edit";
@@ -64,6 +66,7 @@ public class SubjectController {
 //	@RequiresPermissions("subject:update")
 	@RequestMapping(value="/update",method={RequestMethod.GET})
 	public String toUpdateDiction(Model model,@RequestParam(required = true)String id){
+		setCommonData(model);
 		XtSubject subject = subjectService.findSubjectById(id);
 		model.addAttribute("subject", subject);
 		model.addAttribute("op", "修改");
@@ -87,4 +90,15 @@ public class SubjectController {
 		return "redirect:/subject/list";
 	}
 	
+	/**
+	 * 查询出所需要的字典表
+	 * @param model
+	 */
+	@SuppressWarnings("unused")
+	private void setCommonData(Model model) {
+		List<SysDictionary> difficults = dictionaryService.findByType("difficult");
+		List<SysDictionary> directions = dictionaryService.findByType("direction");
+		model.addAttribute("difficults", difficults);
+		model.addAttribute("directions", directions);
+    }
 }

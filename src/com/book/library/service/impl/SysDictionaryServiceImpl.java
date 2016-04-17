@@ -54,6 +54,7 @@ public class SysDictionaryServiceImpl implements SysDictionaryService{
 		SysDictionaryExample example = new SysDictionaryExample();
 		SysDictionaryExample.Criteria criteria = example.createCriteria();
 		criteria.andTypeEqualTo(type);
+		example.setOrderByClause("code");
 		List<SysDictionary> dictionaries = sysDictionaryMapper.selectByExample(example); 
 		return dictionaries;
 	}

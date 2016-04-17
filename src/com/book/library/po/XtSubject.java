@@ -20,7 +20,7 @@ public class XtSubject {
 
     private Date createTime;
     
-    private String desc;
+    private String description;
     
     public String getId() {
         return id;
@@ -86,13 +86,15 @@ public class XtSubject {
         this.createTime = createTime;
     }
 
-	public String getDesc() {
-		return desc;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setDesc(String desc) {
-		this.desc = desc;
+	public void setDescription(String description) {
+		this.description = description;
 	}
+
+	
     
     
 }

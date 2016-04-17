@@ -365,7 +365,7 @@
                         <div class="panel-body">
 							<div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form" action="" method="post">
+                                    <%-- <form role="form" action="$" method="post">
                                         <div class="form-group">
                                             <label>课题名称</label>
                                             <input class="form-control">
@@ -388,30 +388,30 @@
                                         </div>
                                         
                                         <form:button>${op}</form:button>
-                                    </form> 
+                                    </form>  --%>
                                     
                                     <form:form method="post" commandName="subject">
                                     
 								        <div class="form-group">
-								            <form:label path="name">课题名称：</form:label>
+								            <form:label path="name">课题名称 : </form:label>
 								            <form:input path="name"/>
 								        </div>
 								        <div class="form-group">
-								            <form:label path="difficult">课题难度:</form:label>
-								            <form:select path="difficult" itemLabel="${difficults.name}" itemValue="${difficults.code}"></form:select>
+								            <form:label path="difficult">课题难度 : </form:label>
+								            <form:select path="difficult" items="${difficults}" itemLabel="name" itemValue="code"></form:select>
 								        </div>
 								        <div class="form-group">
-								            <form:label path="direction">课题方向:</form:label>
-								            <form:select path="direction" itemLabel="${directions.name}" itemValue="${directions.code}"></form:select>
+								            <form:label path="direction">课题方向 : </form:label>
+								            <form:select path="direction" items="${directions}" itemLabel="name" itemValue="code"></form:select>
 								        </div>
 								        <div class="form-group">
-								            <form:label path="tid">所属教师:</form:label>
+								            <form:label path="tid">所属教师 : </form:label>
 								            <%-- <form:select path="tid" itemLabel="" itemValue=""></form:select> --%>
 								            <form:select path="tid"></form:select>
 								        </div>
 								        <div class="form-group">
-								            <form:label path="desc">课题要求</form:label>
-								            <form:textarea path="desc"/>
+								            <form:label path="description">课题要求</form:label>
+								            <form:textarea path="description"/>
 								        </div>		
 
 								
