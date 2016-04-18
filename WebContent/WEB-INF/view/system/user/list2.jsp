@@ -366,7 +366,7 @@
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
-                                            <th>用户id</th>
+                                            <th>登录名</th>
                                             <th>用户名</th>
                                             <th>用户角色</th>
                                             <th>是否锁定</th>
@@ -376,7 +376,7 @@
                                     <tbody>
                                     	<c:forEach items="${users}" var="user">
 	                                        <tr class="odd gradeX">
-	                                            <td>${user.id}</td>
+	                                            <td>${user.usercode}</td>
 	                                            <td>${user.username}</td>
 	                                            <td class="center">${user.roleListStr}</td>
 	                                            <%-- <td class="center">${user.locked}</td> --%>

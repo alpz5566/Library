@@ -22,6 +22,10 @@ public class XtStudent {
     private String teacherid;
 
     private String subjectid;
+    
+    private XtTeacher teacher;
+    
+    private XtSubject subject;
 
     private Date createTime;
 
@@ -112,4 +116,22 @@ public class XtStudent {
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
+
+	public XtTeacher getTeacher() {
+		return teacher;
+	}
+
+	public void setTeacher(XtTeacher teacher) {
+		this.teacher = teacher;
+	}
+
+	public XtSubject getSubject() {
+		return subject;
+	}
+
+	public void setSubject(XtSubject subject) {
+		this.subject = subject;
+	}
+    
+    
 }

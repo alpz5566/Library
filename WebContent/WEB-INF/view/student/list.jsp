@@ -363,35 +363,39 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="dataTable_wrapper">
-                            	<button onclick="saveSubject();" data-brackets-id="248" type="button" class="btn btn-success">添加学生</button>
+                            	<button onclick="saveStudent();" data-brackets-id="248" type="button" class="btn btn-success">添加学生</button>
 	                        	<br><br>
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
-                                            <th>教师编号</th>
-                                            <th>所在教研室</th>
-                                            <th>教师名</th>
-                                            <th>职称</th>
-                                            <th>限带人数</th>
+                                            <th>姓名</th>
+                                            <th>学号</th>
+                                            <th>专业</th>
+                                            <th>年级</th>
+                                            <th>班级</th>
                                             <th>电话</th>
                                             <th>email</th>
+                                            <th>导师</th>
+                                            <th>课题</th>
                                             <th>操作</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    	<c:forEach items="${teachers}" var="teacher">
+                                    	<c:forEach items="${students}" var="student">
 	                                        <tr class="odd gradeX">
-	                                            <td>${teacher.code}</td>
-	                                            <td>${teacher.classroom}</td>
-	                                            <td>${teacher.name}</td>
-	                                            <td>${teacher.title}</td>
-	                                            <td>${teacher.maxStu}</td>
-	                                            <td>${teacher.tel}</td>
-	                                            <td>${teacher.email}</td>
+	                                            <td>${student.name}</td>
+	                                            <td>${student.code}</td>
+	                                            <td>${student.major}</td>
+	                                            <td>${student.grade}</td>
+	                                            <td>${student.sclass}</td>
+	                                            <td>${student.tel}</td>
+	                                            <td>${student.email}</td>
+	                                            <td>${student.teacher.name}</td>
+	                                            <td>${student.subject.name}</td>
 	                                            
 	                                            <td class="center">
-	                                            	<button onclick="showDetail('${teacher.id}');" data-brackets-id="250" type="button" class="btn btn-warning">详情</button>
-	                                            	<button onclick="deleteTeacher('${teacher.id}');" data-brackets-id="251" type="button" class="btn btn-danger">删除</button>
+	                                            	<button onclick="showDetail('${student.id}');" data-brackets-id="250" type="button" class="btn btn-warning">详情</button>
+	                                            	<button onclick="deleteTeacher('${student.id}');" data-brackets-id="251" type="button" class="btn btn-danger">删除</button>
 	                                            </td>
 	                                        </tr>                                    		
                                     	</c:forEach>
@@ -438,27 +442,28 @@
 			}
 		}
 		
-		//添加选题
-		function saveTeacher(){
-			location.href = '${ctx}/teacher/save';
+		//添加学生
+		function saveStudent(){
+			location.href = '${ctx}/student/save';
 		}
 		
-		//删除用户
-		function deleteTeacher(id){
-			var r = confirm("您确定要删除该选题嘛")
+		//删除学生
+		function deleteStudent(id){
+			var r = confirm("您确定要删除该学生嘛")
 			if(r){
-				location.href = '${ctx}/teacher/delete?id=' + id;
+				location.href = '${ctx}/student/delete?id=' + id;
 			}
 		}
 		
-		//修改用户
-		function updateTeacher(id){
-			location.href = '${ctx}/teacher/update?id=' + id;
+		//修改学生
+		function updateStudent(id){
+			location.href = '${ctx}/student/update?id=' + id;
 		}
 		
 		$(document).ready(function() {
 	        $('#dataTables-example').DataTable({
 	                responsive: true,
+	                bAutoWidth:false,
 	                oLanguage: {
 	                	"sProcessing": "正在加载中......",
 	                	"sLengthMenu": "每页显示 _MENU_ 条记录",

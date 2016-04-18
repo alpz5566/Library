@@ -2,6 +2,7 @@ package com.book.library.service;
 
 import java.util.List;
 
+import com.book.library.po.SysUser;
 import com.book.library.po.XtStudent;
 
 public interface XtStudentService {
@@ -14,6 +15,6 @@ public interface XtStudentService {
 
 	void delete(String id);
 
-	void save(XtStudent student);
+	void save(XtStudent student,SysUser sysUser);
 
 }
