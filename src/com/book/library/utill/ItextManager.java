@@ -41,14 +41,13 @@ public class ItextManager {
         font.setStyle(FontFactory.HELVETICA);  
 //      font.setStyle(Font.BOLD);//加粗  
         font.setColor(new Color(0,0,0));  
-          
     }  
   
     public static ItextManager getInstance() throws Exception {  
         return new ItextManager();  
     }  
     
-    //导出学生类
+    //导出学生表
     public void createRtfContextStu(List<XtStudent> students,OutputStream out,String type) throws FileNotFoundException, IOException{
     	Document doc = new Document(PageSize.A4,20,20,20,20);
     	try {
@@ -57,58 +56,99 @@ public class ItextManager {
             }else if("pdf".equals(type)){  
                 PdfWriter.getInstance(doc, out);  
             }  
+    		
+    		//----------------------------itext设置表格---------------//
+            HeaderFooter footer=new HeaderFooter(new Phrase(), true);
+            footer.setBorder(0);
+            footer.setAlignment(Element.ALIGN_CENTER);
+            doc.setFooter(footer);
+            //----------------------------itext设置表格---------------//
+    		
             doc.open(); 
+            //构建一个段落
+            Paragraph par = new Paragraph("学生表",font);
+            par.setAlignment(Element.ALIGN_CENTER);
+            doc.add(par);
+            Table table = new Table(6);
+            table.setBorder(1);
+            Cell cell1 = new Cell(new Phrase("姓名",font));
+            cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell1.setVerticalAlignment(Element.ALIGN_CENTER);
+            cell1.setHeader(true);
+            cell1.setBackgroundColor(Color.GRAY);
+            
+            Cell cell2 = new Cell(new Phrase("学号",font));
+            cell2.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell2.setVerticalAlignment(Element.ALIGN_CENTER);
+            cell2.setHeader(true);
+            cell2.setBackgroundColor(Color.GRAY);
+            
+            Cell cell3 = new Cell(new Phrase("专业",font));
+            cell3.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell3.setVerticalAlignment(Element.ALIGN_CENTER);
+            cell3.setHeader(true);
+            cell3.setBackgroundColor(Color.GRAY);
+            
+            Cell cell4 = new Cell(new Phrase("班级",font));
+            cell4.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell4.setVerticalAlignment(Element.ALIGN_CENTER);
+            cell4.setHeader(true);
+            cell4.setBackgroundColor(Color.GRAY);
+            
+            Cell cell5 = new Cell(new Phrase("电话",font));
+            cell5.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell5.setVerticalAlignment(Element.ALIGN_CENTER);
+            cell5.setHeader(true);
+            cell5.setBackgroundColor(Color.GRAY);
+            
+            Cell cell6 = new Cell(new Phrase("邮箱",font));
+            cell6.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell6.setVerticalAlignment(Element.ALIGN_CENTER);
+            cell6.setHeader(true);
+            cell6.setBackgroundColor(Color.GRAY);
+            
+            table.addCell(cell1);
+            table.addCell(cell2);
+            table.addCell(cell3);
+            table.addCell(cell4);
+            table.addCell(cell5);
+            table.addCell(cell6);
+            table.endHeaders();
+            
             XtStudent student = null;
             Paragraph title1 = null;  
             for(int i=0;i<students.size();i++){
             	student = students.get(i);
             	
-            	//姓名
-            	Paragraph name = new Paragraph(student.getName(),font); 
-            	name.setAlignment(Element.ALIGN_LEFT);
-            	doc.add(name);
+            	Cell cell11 = new Cell(new Phrase(student.getName(),font));
+            	Cell cell22 = new Cell(new Phrase(student.getCode(),font));
+            	Cell cell33 = new Cell(new Phrase(student.getMajor().toString(),font));
+            	Cell cell44 = new Cell(new Phrase(student.getSclass(),font));
+            	Cell cell55 = new Cell(new Phrase(student.getTel(),font));
+            	Cell cell66 = new Cell(new Phrase(student.getEmail(),font));
             	
-            	// 换行  
-                title1 = new Paragraph("\n");  
-                doc.add(title1); 
-                
-                //学号
-            	Paragraph code = new Paragraph(student.getCode(),font); 
-            	name.setAlignment(Element.ALIGN_LEFT);
-            	doc.add(code);
+                cell11.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cell11.setVerticalAlignment(Element.ALIGN_CENTER);
+                cell22.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cell22.setVerticalAlignment(Element.ALIGN_CENTER);
+                cell33.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cell33.setVerticalAlignment(Element.ALIGN_CENTER);
+                cell44.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cell44.setVerticalAlignment(Element.ALIGN_CENTER);
+                cell55.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cell55.setVerticalAlignment(Element.ALIGN_CENTER);
+                cell66.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cell66.setVerticalAlignment(Element.ALIGN_CENTER);
             	
-            	// 换行  
-                title1 = new Paragraph("\n");  
-                doc.add(title1); 
-                
-                //专业
-            	Paragraph major = new Paragraph(student.getMajor().toString(),font); 
-            	name.setAlignment(Element.ALIGN_LEFT);
-            	doc.add(major);
-            	
-            	// 换行  
-                title1 = new Paragraph("\n");  
-                doc.add(title1); 
-                
-                //班级
-            	Paragraph sclass = new Paragraph(student.getSclass(),font); 
-            	name.setAlignment(Element.ALIGN_LEFT);
-            	doc.add(sclass);
-            	
-            	// 换行  
-                title1 = new Paragraph("\n");  
-                doc.add(title1); 
-                
-                //电话
-            	Paragraph tel = new Paragraph(student.getTel(),font); 
-            	name.setAlignment(Element.ALIGN_LEFT);
-            	doc.add(tel);
-            	
-            	// 换行  
-                title1 = new Paragraph("\n");  
-                doc.add(title1); 
-            	
+                table.addCell(cell11);
+                table.addCell(cell22);
+                table.addCell(cell33);
+                table.addCell(cell44);
+                table.addCell(cell55);
+                table.addCell(cell66);
             }
+            doc.add(table);
+            doc.newPage();
             doc.close();
 		} catch (DocumentException e) {  
             e.printStackTrace();  

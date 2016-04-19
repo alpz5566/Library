@@ -359,6 +359,12 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             学生列表
+                            <form id="form1" action="${ctx}/student/exportword.action" method="post">  
+						        <div>  
+						            <input id="btn_word" type="button" value="导出word" />   
+						            <input id="btn_pdf" type="button" value="导出pdf" />  
+						        </div>  
+						    </form>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -482,6 +488,14 @@
 	        		}
 	        });
 	    });
+		
+	 $("#btn_word").on("click", function() {  
+            $("#form1").prop("action", "${ctx}/student/exportword.action?type=word").submit();  
+     });  
+	  
+     $("#btn_pdf").on("click", function() {  
+         $("#form1").prop("action", "${ctx}/student/exportword.action?type=pdf").submit();  
+     });  
 	</script>
 </body>
 

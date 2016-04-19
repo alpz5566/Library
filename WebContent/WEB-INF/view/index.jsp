@@ -297,10 +297,11 @@
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 教师管理<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="${ctx }/teacher/list.adction">查看所有教师</a>
+                                    <a href="${ctx}/teacher/list.adction">查看所有教师</a>
                                 </li>
                                 <li>
-                                    <a href="morris.html">导出所有教师</a>
+                                    <a href="${ctx}/teacher/exportword.action">导出所有教师</a>
+                                    <a href="${ctx}/teacher/exportword.action">导出所有教师</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -312,7 +313,7 @@
                                     <a href="${ctx }/student/list.action">查看所有学生</a>
                                 </li>
                                 <li>
-                                    <a href="morris.html">导出所有学生</a>
+                                    <a href="${ctx}/student/exportword.action">导出所有学生</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -378,6 +379,10 @@
 			location.href = '${ctx}/logout.action';
 		}
 	}
+/* 	
+	$("#btn_pdf").on("click", function() {  
+        $("#form1").prop("action", "${ctx}/teacher/exportword.action?type=pdf").submit();  
+    }); */
 	</script>
 </body>
 

@@ -1,6 +1,12 @@
 package com.book.library.controller.graduation;
 
+import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +25,7 @@ import com.book.library.service.SysDictionaryService;
 import com.book.library.service.XtStudentService;
 import com.book.library.service.XtSubjectService;
 import com.book.library.service.XtTeacherService;
+import com.book.library.utill.ItextManager;
 
 @Controller
 @RequestMapping(value="/student")
@@ -105,4 +112,26 @@ public class StudentController {
 		List<SysDictionary> majors = dictionaryService.findByType("major");
 		model.addAttribute("majors", majors);
     }
+	
+	//导出学生数据
+	@RequestMapping(value="/exportword")
+	public String exportWord(HttpServletRequest request,HttpServletResponse response) throws Exception{  
+	    String type = request.getParameter("type");  
+	    response.setContentType("application/octet-stream; charset=UTF-8");    
+	    if("word".equals(type)){  
+	        response.setHeader("content-disposition", "attachment;filename=" + new SimpleDateFormat("yyyyMMddHH:mm:ss").format(new Date()) + ".doc");  
+	    }else if("pdf".equals(type)){  
+	        response.setHeader("content-disposition", "attachment;filename=" + new SimpleDateFormat("yyyyMMddHH:mm:ss").format(new Date()) + ".pdf");  
+	    }  
+	    OutputStream out = response.getOutputStream();  
+	    ItextManager tm = ItextManager.getInstance();  
+	    
+	    List<XtStudent> students = studentService.findAll();
+	      
+	    tm.createRtfContextStu(students,out,type);
+	    
+	    out.flush();  
+	    out.close();  
+	    return null;  
+	}  
 }

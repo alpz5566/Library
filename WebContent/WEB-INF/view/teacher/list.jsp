@@ -487,7 +487,7 @@
 		
 		 $("#btn_word").on("click", function() {  
 	            $("#form1").prop("action", "${ctx}/teacher/exportword.action?type=word").submit();  
-	        });  
+        });  
 	  
         $("#btn_pdf").on("click", function() {  
             $("#form1").prop("action", "${ctx}/teacher/exportword.action?type=pdf").submit();  
