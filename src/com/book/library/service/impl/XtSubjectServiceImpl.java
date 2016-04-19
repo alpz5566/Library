@@ -56,5 +56,19 @@ public class XtSubjectServiceImpl implements XtSubjectService{
 	public void delete(String id) {
 		xtSubjectMapper.deleteByPrimaryKey(id);
 	}
+
+	//根据teacherid查询选题列表
+	@Override
+	public List<XtSubject> findSubjectByTeacherId(String teacherid) {
+		List<XtSubject> subjects = xtSubjectMapper.findSubjectByTeacherId(teacherid);
+		return subjects;
+	}
+
+	@Override
+	public String findSubjectIdByUserId(String userid) {
+		// TODO Auto-generated method stub
+		String id = xtSubjectMapper.findSubjectIdByUserId(userid);
+		return id;
+	}
 	
 }

@@ -276,7 +276,7 @@
                                     <a href="${ctx}/subject/list.action">所有课题</a>
                                 </li>
                                 <li>
-                                    <a href="${ctx}/subject/mysubjectlist.action">我的选题列表</a>
+                                    <a href="${ctx}/subject/mysubject.action">我的选题列表</a>
                                 </li>
                                 <li>
                                     <a href="${ctx}/subject/save.action">添加选题</a>

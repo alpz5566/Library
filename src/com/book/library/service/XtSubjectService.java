@@ -16,4 +16,9 @@ public interface XtSubjectService {
 
 	void delete(String id);
 
+	//根据teacherid查询选题列表
+	List<XtSubject> findSubjectByTeacherId(String teacherid);
+
+	String findSubjectIdByUserId(String userid);
+
 }

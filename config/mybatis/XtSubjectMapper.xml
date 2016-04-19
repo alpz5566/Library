@@ -270,4 +270,17 @@
       description = #{description,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
+  
+  <select id="findSubjectByTeacherId" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	select 
+  	<include refid="Base_Column_List" />
+  	from xt_subject 
+	where tid = #{teacherid,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="findSubjectIdByUserId" parameterType="java.lang.String" resultType="java.lang.String">
+  	select subjectid 
+  	from xt_student 
+  	where id = #{userid,jdbcType=VARCHAR}
+  </select>
 </mapper>

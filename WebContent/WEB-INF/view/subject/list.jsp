@@ -393,8 +393,8 @@
 	                                            </c:choose>
 	                                            <td>${subject.teacher.name}</td>
 	                                            <c:choose>
-	                                            	<c:when test="${subject.isselect == 0}"><td>未选</td></c:when>
-	                                            	<c:when test="${subject.isselect == 1}"><td>已选</td></c:when>
+	                                            	<c:when test="${subject.isselect == 0}"><td><font color="red">未选</font></td></c:when>
+	                                            	<c:when test="${subject.isselect == 1}"><td><font color="green">已选</font></td></c:when>
 	                                            </c:choose>
 	                                            <c:choose>
 	                                            	<c:when test="${subject.review == '0'}"><td>通过审核</td></c:when>
@@ -407,6 +407,16 @@
 												</td> --%>
 	                                            
 	                                            <td class="center">
+	                                            	<c:choose>
+	                                            		<c:when test="${subject.isselect == 1}">
+	                                            			<fieldset disabled>
+				                                            	<button onclick="chooseSubject('${subject.id}');" data-brackets-id="250" type="button" class="btn btn-warning">选择此题</button>
+				                                            </fieldset>	
+	                                            		</c:when>
+	                                            		<c:otherwise>
+	                                            			<button onclick="chooseSubject('${subject.id}');" data-brackets-id="250" type="button" class="btn btn-warning">选择此题</button>
+	                                            		</c:otherwise>
+	                                            	</c:choose>
 	                                            	<button onclick="showDetail('${subject.id}');" data-brackets-id="250" type="button" class="btn btn-warning">详情</button>
 	                                            	<button onclick="deleteSubject('${subject.id}');" data-brackets-id="251" type="button" class="btn btn-danger">删除</button>
 	                                            </td>
@@ -471,6 +481,11 @@
 		//修改用户
 		function updateSubject(id){
 			location.href = '${ctx}/subject/update?id=' + id;
+		}
+		
+		//我要选题
+		function chooseSubject(id){
+			location.href = '${ctx}/subject/iwantselect?subjectid=' + id;
 		}
 		
 		$(document).ready(function() {

@@ -27,4 +27,8 @@ public interface XtSubjectMapper {
     int updateByPrimaryKeySelective(XtSubject record);
 
     int updateByPrimaryKey(XtSubject record);
+
+	List<XtSubject> findSubjectByTeacherId(String teacherid);
+
+	String findSubjectIdByUserId(String userid);
 }

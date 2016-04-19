@@ -2,9 +2,9 @@ package com.book.library.controller.graduation;
 
 import java.util.List;
 
-import javax.security.auth.Subject;
-
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,11 +13,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.book.library.po.ActiveUser;
 import com.book.library.po.SysDictionary;
 import com.book.library.po.SysRole;
+import com.book.library.po.XtStudent;
 import com.book.library.po.XtSubject;
 import com.book.library.po.XtTeacher;
 import com.book.library.service.SysDictionaryService;
+import com.book.library.service.SysRoleService;
+import com.book.library.service.XtStudentService;
 import com.book.library.service.XtSubjectService;
 import com.book.library.service.XtTeacherService;
 
@@ -38,6 +42,12 @@ public class SubjectController {
 	
 	@Autowired
 	private XtTeacherService teacherService;
+	
+	@Autowired
+	private SysRoleService sysRoleService;
+	
+	@Autowired
+	private XtStudentService studentService;
 	
 //	@RequiresPermissions("subject:viewList")
 	@RequestMapping(value="/list",method={RequestMethod.GET})
@@ -112,4 +122,48 @@ public class SubjectController {
 		model.addAttribute("difficults", difficults);
 		model.addAttribute("directions", directions);
     }
+	
+	/**
+	 * 我要选题 (学生功能)
+	 * @return
+	 */
+	@RequestMapping(value="/iwantselect")
+	public String IWantSelect(@RequestParam(required = true)String subjectid){
+		Subject subject = SecurityUtils.getSubject();
+		ActiveUser activeUser = (ActiveUser)subject.getPrincipal();
+		String userid = activeUser.getUserid();
+		XtStudent student = studentService.findStuById(userid);
+		String old_subid = student.getSubjectid();
+		student.setSubjectid(subjectid);
+		studentService.update(student);
+		//判断学生是否有选课
+		String selectsb = subjectService.findSubjectIdByUserId(userid); 
+		if(!selectsb.equals("0")){
+			//已经选课，修改选课题
+			//先删除之前选课的被选状态
+			XtSubject xtSubject = subjectService.findSubjectById(old_subid);
+			xtSubject.setIsselect(0);
+			subjectService.update(xtSubject);
+		}
+		//再添加新的被选状态
+		XtSubject xtSubject = subjectService.findSubjectById(subjectid);
+		xtSubject.setIsselect(1);
+		subjectService.update(xtSubject);
+		return "redirect:/subject/list";
+		
+	}
+	
+	/**
+	 * 查询我的选题
+	 * @return
+	 */
+	@RequestMapping(value="/mysubject")
+	public String findMySubject(Model model){
+		Subject subject = SecurityUtils.getSubject();
+		ActiveUser activeUser = (ActiveUser)subject.getPrincipal();
+		String teacherid = activeUser.getUserid();
+		List<XtSubject> subjects = subjectService.findSubjectByTeacherId(teacherid);
+		model.addAttribute("subjects", subjects);
+		return "/subject/mysubject";
+	}
 }
