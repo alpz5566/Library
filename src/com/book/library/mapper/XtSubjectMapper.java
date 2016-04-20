@@ -31,4 +31,6 @@ public interface XtSubjectMapper {
 	List<XtSubject> findSubjectByTeacherId(String teacherid);
 
 	String findSubjectIdByUserId(String userid);
+
+	XtSubject findSubjectByUserId(String studentid);
 }

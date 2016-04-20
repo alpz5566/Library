@@ -141,9 +141,14 @@ public class SubjectController {
 		if(!selectsb.equals("0")){
 			//已经选课，修改选课题
 			//先删除之前选课的被选状态
-			XtSubject xtSubject = subjectService.findSubjectById(old_subid);
-			xtSubject.setIsselect(0);
-			subjectService.update(xtSubject);
+			try {
+				XtSubject xtSubject = subjectService.findSubjectById(old_subid);
+				xtSubject.setIsselect(0);
+				subjectService.update(xtSubject);
+			} catch (NullPointerException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		//再添加新的被选状态
 		XtSubject xtSubject = subjectService.findSubjectById(subjectid);
@@ -154,16 +159,32 @@ public class SubjectController {
 	}
 	
 	/**
-	 * 查询我的选题
+	 * 查询我的选题列表  （针对教师）
 	 * @return
 	 */
 	@RequestMapping(value="/mysubject")
-	public String findMySubject(Model model){
+	public String findMySubjectList(Model model){
 		Subject subject = SecurityUtils.getSubject();
 		ActiveUser activeUser = (ActiveUser)subject.getPrincipal();
 		String teacherid = activeUser.getUserid();
 		List<XtSubject> subjects = subjectService.findSubjectByTeacherId(teacherid);
 		model.addAttribute("subjects", subjects);
 		return "/subject/mysubject";
+	}
+	
+	/**
+	 * 查询我的选题 （针对学生）
+	 * @return
+	 */
+	@RequestMapping(value="/stusubject")
+	public String findMySubject(Model model){
+		Subject subject = SecurityUtils.getSubject();
+		ActiveUser activeUser = (ActiveUser)subject.getPrincipal();
+		String studentid = activeUser.getUserid();
+		XtSubject xtSubject = subjectService.findSubjectByUserId(studentid);
+		XtTeacher teacher = teacherService.findTeacherById(xtSubject.getTid());
+		xtSubject.setTeacher(teacher);
+		model.addAttribute("subject", xtSubject);
+		return "/subject/stusubject";
 	}
 }

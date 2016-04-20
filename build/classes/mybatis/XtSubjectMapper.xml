@@ -283,4 +283,14 @@
   	from xt_student 
   	where id = #{userid,jdbcType=VARCHAR}
   </select>
+  
+  <select id="findSubjectByUserId" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	 select 
+  	 <include refid="Base_Column_List" /> 
+  	 from xt_subject 
+  	 where id = (
+  	 	select subjectid 
+  	 	from xt_student 
+  	 	where id = #{studentid,jdbcType=VARCHAR});
+  </select>
 </mapper>

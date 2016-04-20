@@ -21,4 +21,6 @@ public interface XtSubjectService {
 
 	String findSubjectIdByUserId(String userid);
 
+	XtSubject findSubjectByUserId(String studentid);
+
 }

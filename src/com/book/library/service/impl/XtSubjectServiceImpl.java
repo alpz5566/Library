@@ -70,5 +70,11 @@ public class XtSubjectServiceImpl implements XtSubjectService{
 		String id = xtSubjectMapper.findSubjectIdByUserId(userid);
 		return id;
 	}
+
+	@Override
+	public XtSubject findSubjectByUserId(String studentid) {
+		XtSubject xtSubject = xtSubjectMapper.findSubjectByUserId(studentid);
+		return xtSubject;
+	}
 	
 }

@@ -26,6 +26,13 @@
 
     <!-- Custom CSS -->
     <link href="${ctx}/sbadmin/sb-admin/dist/css/sb-admin-2.css" rel="stylesheet">
+    
+    <!-- DataTables CSS -->
+    <link href="${ctx}/sbadmin/sb-admin/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet">
+
+    <!-- DataTables Responsive CSS -->
+    <link href="${ctx}/sbadmin/sb-admin/bower_components/datatables-responsive/css/responsive.dataTables.scss" rel="stylesheet">
+    
 
     <!-- Morris Charts CSS -->
     <link href="${ctx}/sbadmin/sb-admin/bower_components/morrisjs/morris.css" rel="stylesheet">
@@ -276,13 +283,13 @@
                                     <a href="${ctx}/subject/list.action">所有课题</a>
                                 </li>
                                 <li>
-                                    <a href="${ctx}/subject/mysubject.action">我的选题列表</a>
+                                    <a href="${ctx}/subject/mysubjectlist.action">我的选题列表</a>
                                 </li>
                                 <li>
-                                    <a href="${ctx}/subject/stusubject.action">我的选题</a>
+                                    <a href="${ctx}/index/addsubject.action">添加选题</a>
                                 </li>
                                 <li>
-                                    <a href="${ctx}/subject/save.action">添加选题</a>
+                                    <a href="morris.html">批量导入选题</a>
                                 </li>
                                 <li>
                                     <a href="morris.html">导出所有选题</a>
@@ -297,11 +304,10 @@
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 教师管理<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="${ctx}/teacher/list.adction">查看所有教师</a>
+                                    <a href="flot.html">查看所有教师</a>
                                 </li>
                                 <li>
-                                    <a href="${ctx}/teacher/exportword.action">导出所有教师</a>
-                                    <a href="${ctx}/teacher/exportword.action">导出所有教师</a>
+                                    <a href="morris.html">导出所有教师</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -310,10 +316,10 @@
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 学生管理<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="${ctx }/student/list.action">查看所有学生</a>
+                                    <a href="flot.html">查看所有学生</a>
                                 </li>
                                 <li>
-                                    <a href="${ctx}/student/exportword.action">导出所有学生</a>
+                                    <a href="morris.html">导出所有学生</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -339,9 +345,6 @@
                         <li>
                             <a href="forms.html"><i class="fa fa-edit fa-fw"></i> 流程管理</a>
                         </li>
-                        <li>
-                            <a href="${ctx}/dictionary/list.action"><i class="fa fa-edit fa-fw"></i> 数据字典管理</a>
-                        </li>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -351,7 +354,43 @@
 
 		<!-- 华丽丽分割线。。。。。 -->
         <div id="page-wrapper">
-        	主页面
+        		<div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            我的选题
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <dl>
+                                <dt>选题名称：${subject.name}</dt>
+                                <c:choose>
+                                	<c:when test="${subject.direction == 1}"><dt>选题方向:设计运用</dt></c:when>
+                                	<c:when test="${subject.direction == 2}"><dt>选题方向:理论研究</dt></c:when>
+                                </c:choose>
+                                <c:choose>
+                                	<c:when test="${subject.difficult == 1}"><dt>选题难度:简单</dt></c:when>
+                                	<c:when test="${subject.difficult == 2}"><dt>选题难度:中等</dt></c:when>
+                                	<c:when test="${subject.difficult == 3}"><dt>选题难度:较难</dt></c:when>
+                                	<c:when test="${subject.difficult == 4}"><dt>选题难度:困难</dt></c:when>
+                                </c:choose>
+                                <dt>导师:${subject.teacher.name}</dt>
+                                <dt>导师电话:${subject.teacher.tel}</dt>
+                                <dt>导师邮箱:${subject.teacher.email}</dt>
+                            </dl>
+                            <!-- <dl class="dl-horizontal">
+                                <dt>Horizontal Description List</dt>
+                                <dd>Description Text</dd>
+                                <dt>Description List Title</dt>
+                                <dd>Description List Text</dd>
+                            </dl> -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
         </div>
         <!-- /#page-wrapper -->
 
@@ -366,23 +405,63 @@
 
     <!-- Metis Menu Plugin JavaScript -->
     <script src="${ctx}/sbadmin/sb-admin/bower_components/metisMenu/dist/metisMenu.min.js"></script>
-
+   
     <!-- Custom Theme JavaScript -->
     <script src="${ctx}/sbadmin/sb-admin/dist/js/sb-admin-2.js"></script>
+    
+    <!-- DataTables JavaScript -->
+    <script src="${ctx}/sbadmin/sb-admin/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="${ctx}/sbadmin/sb-admin/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
 
 	<script type="text/javascript">
 	
-	//注销
-	function logout() {
-		var r = confirm("您确定要退出系统吗？")
-		if(r){
-			location.href = '${ctx}/logout.action';
+		//注销
+		function logout() {
+			var r = confirm("您确定要退出系统吗？")
+			if(r){
+				location.href = '${ctx}/logout.action';
+			}
 		}
-	}
-/* 	
-	$("#btn_pdf").on("click", function() {  
-        $("#form1").prop("action", "${ctx}/teacher/exportword.action?type=pdf").submit();  
-    }); */
+		
+		//添加选题
+		function saveSubject(){
+			location.href = '${ctx}/subject/save';
+		}
+		
+		//删除用户
+		function deleteSubject(id){
+			var r = confirm("您确定要删除该选题嘛")
+			if(r){
+				location.href = '${ctx}/subject/delete?id=' + id;
+			}
+		}
+		
+		//修改用户
+		function updateSubject(id){
+			location.href = '${ctx}/subject/update?id=' + id;
+		}
+		
+		$(document).ready(function() {
+	        $('#dataTables-example').DataTable({
+	                responsive: true,
+	                oLanguage: {
+	                	"sProcessing": "正在加载中......",
+	                	"sLengthMenu": "每页显示 _MENU_ 条记录",
+	                	"sZeroRecords": "正在加载中......",
+	                	"sEmptyTable": "查询无数据！",
+	                	"sInfo": "当前显示 _START_ 到 _END_ 条，共 _TOTAL_ 条记录",
+	                	"sInfoEmpty": "显示0到0条记录",
+	                	"sInfoFiltered": "数据表中共为 _MAX_ 条记录",
+	                	"sSearch": "搜索",
+	                	"oPaginate": {
+		                	"sFirst": "首页",
+		                	"sPrevious": "上一页",
+		                	"sNext": "下一页",
+		                	"sLast": "末页"
+						}
+	        		}
+	        });
+	    });
 	</script>
 </body>
 
